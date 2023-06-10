@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:19:09 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/09 23:47:51 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:38:30 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_game	init_game_structure(void)
 	game.canvas = new_image(game.mlx, W_WIDTH, W_HEIGHT);
 
 	// Player Setup
-	game.player.x = 4 * MINIMAP_CELL_SIZE;
-	game.player.y = 2 * MINIMAP_CELL_SIZE;
-	game.player.angle = 90;
+	game.player.x = 3.5f;
+	game.player.y = 2.5f;
+	game.player.angle = PI/2 + 0.001;
 	game.player.w_pressed = false;
 	game.player.a_pressed = false;
 	game.player.s_pressed = false;

@@ -26,8 +26,10 @@ LIBFT		= $(LIBFT_PATH)/libft.a
 SRC_BONUS	=	src/bonus/main.c \
 				src/bonus/execution/setup.c \
 				src/bonus/execution/hooks.c \
+				src/bonus/execution/rays.c \
 				src/bonus/utils/math_utils.c \
-				src/bonus/utils/mlx_utils.c
+				src/bonus/utils/mlx_utils.c \
+				src/bonus/utils/rays_utils.c
 
 SRC_OBJS 	= $(SRC_BONUS:src/%.c=bin/%.o)
 

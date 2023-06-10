@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/10 15:22:47 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 01:08:50 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 
 #define PI 3.1415926 // Math values
 
-#define MINIMAP_CELL_SIZE 50 // Minimap settings
-#define PLAYER_STEP 0.2 * MINIMAP_CELL_SIZE / 10
+#define MINIMAP_CELL_SIZE 64 // Minimap settings
+#define PLAYER_STEP 0.025
+#define PLAYER_ROTATION 0.05
 #define PLAYER_MINIMAP_SIZE 4
 
 #define W_KEY 13 // MLX Key Codes
@@ -34,6 +35,8 @@
 #define ESC_KEY 53
 #define ON_KEYDOWN 2 // MLX Event Hooks
 #define ON_KEYUP 3
+#define DIR_HORIZONTAL 'H' // Rays settings
+#define DIR_VERTICAL 'V'
 
 typedef enum { false, true } t_bool;
 
@@ -64,6 +67,9 @@ typedef struct s_game
 	void		*window;
 	t_player	player;
 	t_img		canvas;
+	int			map_width;
+	int			map_height;
+	char		**map;
 } t_game;
 
 typedef struct s_point
@@ -72,6 +78,24 @@ typedef struct s_point
 	float	y;
 } t_point;
 
+typedef struct s_size
+{
+	float	w;
+	float	h;
+} t_size;
+
+typedef struct s_ray
+{
+	float x;
+	float y;
+	float angle;
+	float x_near;
+	float y_near;
+	float x_offset;
+	float y_offset;
+	float distance;
+} t_ray;
+
 // Functions
 t_game	init_game_structure(void);
 int close_window(void);
@@ -79,10 +103,13 @@ int	handle_input_down(int key_code, t_game *game);
 int	handle_input_up(int key_code, t_game *game);
 int	max(int a, int b);
 t_img	new_image(void *mlx, int w, int h);
-void	place_pixel_at(t_img *img, t_point point, int color);
-void	fill_image(t_img *img, int color, int sz_x, int sz_y);
+void	place_pixel_at(t_img *img, t_point point, t_size size, int color);
+void	fill_image(t_img *img, int color, t_size img_size);
 void	draw_line(t_img *img, t_point a, t_point b, int color);
 t_point	point(float x, float y);
-
+t_size size(float w, float h);
+t_ray	ray(t_game *game, float angle, char direction);
+t_ray min_ray(t_ray a, t_ray b);
+void	draw_ray(t_game *game, float angle);
 
 #endif
