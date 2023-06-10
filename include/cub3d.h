@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/09 23:37:56 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:22:47 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define PI 3.1415926 // Math values
 
 #define MINIMAP_CELL_SIZE 50 // Minimap settings
-#define PLAYER_STEP 0.15 * MINIMAP_CELL_SIZE / 10
+#define PLAYER_STEP 0.2 * MINIMAP_CELL_SIZE / 10
 #define PLAYER_MINIMAP_SIZE 4
 
 #define W_KEY 13 // MLX Key Codes
@@ -66,6 +66,12 @@ typedef struct s_game
 	t_img		canvas;
 } t_game;
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+} t_point;
+
 // Functions
 t_game	init_game_structure(void);
 int close_window(void);
@@ -73,8 +79,10 @@ int	handle_input_down(int key_code, t_game *game);
 int	handle_input_up(int key_code, t_game *game);
 int	max(int a, int b);
 t_img	new_image(void *mlx, int w, int h);
-void	place_pixel_at(t_img *img, int x, int y, int color);
+void	place_pixel_at(t_img *img, t_point point, int color);
 void	fill_image(t_img *img, int color, int sz_x, int sz_y);
-void	draw_line(t_img *img, float x1, float y1, float x2, float y2, int color);
+void	draw_line(t_img *img, t_point a, t_point b, int color);
+t_point	point(float x, float y);
+
 
 #endif

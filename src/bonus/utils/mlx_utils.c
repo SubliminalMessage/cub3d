@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:30:22 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/09 23:43:21 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:21:28 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ t_img	new_image(void *mlx, int w, int h)
 	return (img);
 }
 
-void	place_pixel_at(t_img *img, int x, int y, int color)
+void	place_pixel_at(t_img *img, t_point point, int color)
 {
 	char	*dst;
+	int	length;
+	int	bpp;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	length = img->line_length;
+	bpp = img->bits_per_pixel;
+	dst = img->addr + ((int)point.y * length + (int)point.x * (bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -41,30 +45,30 @@ void	fill_image(t_img *img, int color, int sz_x, int sz_y)
 		y = 0;
 		while (y < sz_y)
 		{
-			place_pixel_at(img, x, y, color);
+			place_pixel_at(img, point(x, y), color);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_line(t_img *img, float x1, float y1, float x2, float y2, int color)
+void	draw_line(t_img *img,t_point a, t_point b, int color)
 {
 	int steps;
 	float x_increment;
 	float y_increment;
 	int i;
 
-	steps = max(abs((int)x2 - (int)x1), abs((int)y2 - (int)y1));
-	x_increment = (x2 - x1) / steps;
-	y_increment = (y2 - y1) / steps;
+	steps = max(abs((int)b.x - (int)a.x), abs((int)b.y - (int)a.y));
+	x_increment = (b.x - a.x) / steps;
+	y_increment = (b.y - a.y) / steps;
 
 	i = 0;
 	while (i <= steps)
 	{
-		place_pixel_at(img, x1, y1, color);
-		x1 += x_increment;
-		y1 += y_increment;
+		place_pixel_at(img, point(a.x, a.y), color);
+		a.x += x_increment;
+		a.y += y_increment;
 		i++;
 	}
 }
