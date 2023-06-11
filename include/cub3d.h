@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 01:08:50 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:16:25 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 #define PI 3.1415926 // Math values
 
-#define MINIMAP_CELL_SIZE 64 // Minimap settings
-#define PLAYER_STEP 0.025
+#define MINIMAP_CELL_SIZE 32 // Minimap settings
+#define PLAYER_STEP 0.05
 #define PLAYER_ROTATION 0.05
 #define PLAYER_MINIMAP_SIZE 4
 
@@ -37,6 +37,12 @@
 #define ON_KEYUP 3
 #define DIR_HORIZONTAL 'H' // Rays settings
 #define DIR_VERTICAL 'V'
+
+// Raycasting settings
+#define FOV 30 // Degrees of Field of Vision
+#define FOV_DENSITY 10 // How many rays per degree
+#define ONE_DEGREE 0.0174533 // One degree in radians
+#define RAY_STEP ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
 
 typedef enum { false, true } t_bool;
 
@@ -84,16 +90,19 @@ typedef struct s_size
 	float	h;
 } t_size;
 
+typedef enum { NONE, NORTH, SOUTH, EAST, WEST } t_side;
+
 typedef struct s_ray
 {
-	float x;
-	float y;
-	float angle;
-	float x_near;
-	float y_near;
-	float x_offset;
-	float y_offset;
-	float distance;
+	float	x;
+	float	y;
+	float	angle;
+	float	x_near;
+	float	y_near;
+	float	x_offset;
+	float	y_offset;
+	float	distance;
+	t_side	collision_side;
 } t_ray;
 
 // Functions
@@ -110,6 +119,6 @@ t_point	point(float x, float y);
 t_size size(float w, float h);
 t_ray	ray(t_game *game, float angle, char direction);
 t_ray min_ray(t_ray a, t_ray b);
-void	draw_ray(t_game *game, float angle);
+void	draw_ray(t_game *game, float angle, int count);
 
 #endif

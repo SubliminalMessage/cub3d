@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 01:16:43 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:45:27 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ int mapY = 8;
 int mapS = 64;
 char *raw_map = "11111111\n10100101\n10100011\n10000001\n10101001\n10101001\n10001011\n11111111"; // With walls
 //char *raw_map = "11111111\n10000001\n10000001\n10000001\n10000001\n10000001\n10000001\n11111111"; // Without walls
-
-#define FOV 60 // Degrees of Field of Vision
-#define FOV_DENSITY 2 // How many rays per degree
-#define ONE_DEGREE 0.0174533 // One degree in radians
 
 void	draw_minimap_player(t_game *game)
 {
@@ -46,7 +42,7 @@ void	draw_minimap_player(t_game *game)
 	}
 	int x1 = player->x * MINIMAP_CELL_SIZE + (PLAYER_MINIMAP_SIZE / 2);
 	int y1 = player->y * MINIMAP_CELL_SIZE + (PLAYER_MINIMAP_SIZE / 2);
-	draw_line(img, point(x1, y1), point(x1 + player->dx * 5000, y1 + player->dy * 5000), 0xFCCE00);
+	draw_line(img, point(x1, y1), point(x1 + player->dx * 5000, y1 + player->dy * 5000), 0x3002CE);
 }
 
 void	update_player_position(t_game *game)
@@ -79,22 +75,26 @@ void	update_player_position(t_game *game)
 	}
 }
 
+
 int	game_loop(t_game *game)
 {
 	int i;
 	int total_rays;
 
-	fill_image(&game->canvas, 0x003D3D3D, size(W_WIDTH, W_HEIGHT));
+	fill_image(&game->canvas, 0x3D3D3D, size(W_WIDTH, W_HEIGHT));
 	update_player_position(game);
-	draw_minimap(game);
 
 	total_rays = FOV * FOV_DENSITY;
-	i = -total_rays / 2;
-	while (i < total_rays)
+	i = -(total_rays / 2);
+	int count = 0;
+	while (i < (total_rays / 2))
 	{
-		draw_ray(game, game->player.angle + (i * (ONE_DEGREE / FOV_DENSITY)));
+		draw_ray(game, game->player.angle + (i * RAY_STEP), count);
 		i++;
+		count++;
 	}
+
+	draw_minimap(game);
 	draw_minimap_player(game);
 
 	mlx_put_image_to_window(game->mlx, game->window, game->canvas.img, 0, 0);

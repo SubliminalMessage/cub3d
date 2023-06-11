@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:58:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 01:11:01 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:12:08 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	setup_horizontal_ray(t_ray *ray, t_game *game)
 		ray->x += ray->x_near;
 		ray->y_offset = -1;
 		ray->x_offset = ray->y_offset / tan(ray->angle);
+		ray->collision_side = NORTH;
 	}
 	else if (ray->angle < PI) // Looking down
 	{
@@ -66,6 +67,7 @@ static void	setup_horizontal_ray(t_ray *ray, t_game *game)
 		ray->x += ray->x_near;
 		ray->y_offset = 1;
 		ray->x_offset = ray->y_offset / tan(ray->angle);
+		ray->collision_side = SOUTH;
 	}
 	calculate_collision(ray, game);
 }
@@ -83,6 +85,7 @@ static void	setup_vertical_ray(t_ray *ray, t_game *game)
 		ray->x += ray->x_near - 0.0001;
 		ray->x_offset = -1;
 		ray->y_offset = ray->x_offset * tan(ray->angle);
+		ray->collision_side = WEST;
 	}
 	else if (ray->angle > (PI / 2) || ray->angle < (3 * PI) / 2) // Looking right
 	{
@@ -92,6 +95,7 @@ static void	setup_vertical_ray(t_ray *ray, t_game *game)
 		ray->x += ray->x_near;
 		ray->x_offset = 1;
 		ray->y_offset = ray->x_offset * tan(ray->angle);
+		ray->collision_side = EAST;
 	}
 	calculate_collision(ray, game);
 }
@@ -111,6 +115,7 @@ t_ray	ray(t_game *game, float angle, char direction)
 	ray.y = game->player.y;
 	ray.angle = angle;
 	ray.distance = -1;
+	ray.collision_side = NONE;
 	if (direction == DIR_HORIZONTAL)
 		setup_horizontal_ray(&ray, game);
 	if (direction == DIR_VERTICAL)
