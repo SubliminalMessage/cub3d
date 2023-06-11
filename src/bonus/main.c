@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:45:27 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:53:08 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,36 @@ void	update_player_position(t_game *game)
 	}
 }
 
+#define SKY_COLOR 0x3D3D3D
+#define FLOOR_COLOR 0xBB9F06
+void	draw_background(t_game *game)
+{
+	int x;
+	int y;
+	int color;
+
+	color = SKY_COLOR;
+	y = 0;
+	while (y < W_HEIGHT)
+	{
+		x = 0;
+		if (y > W_HEIGHT / 2)
+			color = FLOOR_COLOR;
+		while (x < W_WIDTH)
+		{
+			place_pixel_at(&game->canvas, point(x, y), size(W_WIDTH, W_HEIGHT), color);
+			x++;
+		}
+		y++;
+	}
+}
 
 int	game_loop(t_game *game)
 {
 	int i;
 	int total_rays;
 
-	fill_image(&game->canvas, 0x3D3D3D, size(W_WIDTH, W_HEIGHT));
+	draw_background(game);
 	update_player_position(game);
 
 	total_rays = FOV * FOV_DENSITY;

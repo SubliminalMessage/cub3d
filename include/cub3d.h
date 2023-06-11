@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:16:25 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:53:44 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	handle_input_up(int key_code, t_game *game);
 int	max(int a, int b);
 t_img	new_image(void *mlx, int w, int h);
 void	place_pixel_at(t_img *img, t_point point, t_size size, int color);
-void	fill_image(t_img *img, int color, t_size img_size);
 void	draw_line(t_img *img, t_point a, t_point b, int color);
 t_point	point(float x, float y);
 t_size size(float w, float h);
