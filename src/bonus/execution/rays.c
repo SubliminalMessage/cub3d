@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:14:20 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:37:48 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	draw_ray(t_game *game, float angle, int count)
 	float correct_distance = collision_ray.distance * cos(ray_angle);
 	int wall_height = 32 * 10;
 	float projected_height = wall_height / correct_distance;
+	if (projected_height > W_HEIGHT)
+		projected_height = W_HEIGHT;
 
 	int color = 0x000000;
 	if (collision_ray.collision_side == NORTH)
@@ -53,7 +55,12 @@ void	draw_ray(t_game *game, float angle, int count)
 	{
 		t_point start = point((count * px_per_ray) + i, (W_HEIGHT / 2) - (projected_height / 2));
 		t_point end = point((count * px_per_ray) + i, (W_HEIGHT / 2) + (projected_height / 2));
-		draw_line(&game->canvas, start, end, color);
+		int j = start.y;
+		while (j < end.y)
+		{
+			place_pixel_at(&game->canvas, point(start.x, j), size(W_WIDTH, W_HEIGHT), color);
+			j++;
+		}
 		i++;
 	}
 
