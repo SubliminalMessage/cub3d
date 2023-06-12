@@ -67,7 +67,7 @@ $(LIBFT):
 bin/%.o: src/%.c
 	@echo $(BLUE)"Compilation "$(RESET)": $< "
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH)/include -I mlx/ -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -I mlx/ -c $< -o $@
 
 clean:
 	@echo $(RED)"[Deleting Object Files]"$(RESET)
