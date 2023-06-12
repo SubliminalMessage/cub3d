@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 17:30:28 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:15:25 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_game
 	int			map_width;
 	int			map_height;
 	char		**map;
+	t_img		texture;
 } t_game;
 
 typedef struct s_point

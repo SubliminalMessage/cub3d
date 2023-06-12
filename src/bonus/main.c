@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 17:14:46 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:15:21 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,19 @@ int main(void)
 	t_game	game;
 
 	game = init_game_structure();
+	int img_size = 32;
+	void *texture = mlx_xpm_file_to_image(game.mlx, "./assets/arrow.xpm", &img_size, &img_size);
+	if (!texture)
+	{
+		printf("Texture failed\n");
+		exit(1);
+	}
+	t_img game_texture;
+	game_texture.img = texture;
+	game_texture.addr = mlx_get_data_addr(game_texture.img, &game_texture.bits_per_pixel, &game_texture.line_length, &game_texture.endian);
 
+
+	game.texture = game_texture;
 	game.map_height = 8;
 	game.map_width = 8;
 	game.map = ft_split(raw_map, '\n');

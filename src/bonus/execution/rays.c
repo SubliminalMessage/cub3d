@@ -6,11 +6,23 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 18:00:59 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:22:02 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+int	get_color_from_image(t_img *img, int x, int y)
+{
+	char	*dst;
+	int	length;
+	int	bpp;
+
+	length = img->line_length;
+	bpp = img->bits_per_pixel;
+	dst = img->addr + (y * length + x * (bpp / 8));
+	return (*(unsigned int*)dst);
+}
 
 void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 {
@@ -21,14 +33,11 @@ void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 	px = 0;
 	while (px < ray.projected_height)
 	{
-		int box_y = px + vertical_offset;
-		int pixel_y = floor(32 * (box_y / ray.real_height));
+		int pixel_y = px + vertical_offset;
+
+		int box_y = floor(32 * (pixel_y / ray.real_height));
 		int box_x = ray.box_x;
-
-		int color = 0x000000;
-		if ((box_x % 2) + (pixel_y % 2) == 1)
-			color = 0xFFFFFF;
-
+		int color = get_color_from_image(&game->texture, box_x, box_y);
 		int screen_y = ((W_HEIGHT / 2) - (ray.projected_height / 2)) + px;
 		place_pixel_at(&game->canvas, point(screen_x, screen_y), size(W_WIDTH, W_HEIGHT), color);
 
