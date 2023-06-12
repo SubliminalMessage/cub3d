@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 22:07:05 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:14:46 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int main(void)
 	}
 	mlx_hook(game.window, ON_KEYDOWN, 0, handle_input_down, &game);
 	mlx_hook(game.window, ON_KEYUP, 0, handle_input_up, &game);
-	mlx_hook(game.window, 17, 1L < 17, close_window, NULL);
+	mlx_hook(game.window, 17, 1L < 17, close_window, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 }

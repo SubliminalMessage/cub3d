@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 22:34:36 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:30:28 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define DIR_VERTICAL 'V'
 
 // Raycasting settings
-#define FOV 80 // Degrees of Field of Vision
+#define FOV 90 // Degrees of Field of Vision
 #define FOV_DENSITY 10 // How many rays per degree
 #define ONE_DEGREE 0.0174533 // One degree in radians
 #define RAY_STEP ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
@@ -102,12 +102,15 @@ typedef struct s_ray
 	float	x_offset;
 	float	y_offset;
 	float	distance;
+	float	real_height;
+	float	projected_height;
+	int		box_x;
 	t_side	collision_side;
 } t_ray;
 
 // Functions
 t_game	init_game_structure(void);
-int close_window(void);
+int close_window(t_game *game);
 int	handle_input_down(int key_code, t_game *game);
 int	handle_input_up(int key_code, t_game *game);
 int	max(int a, int b);
