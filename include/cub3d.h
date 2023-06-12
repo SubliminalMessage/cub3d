@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 18:15:25 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 01:09:42 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <mlx.h>
 #include <stdio.h>
 #include <math.h>
+#include <structures.h>
 
 #define W_WIDTH 1200 // Map Size
 #define W_HEIGHT (int) (W_WIDTH / 16) * 9 // 16:9 Aspect Ratio
@@ -24,14 +25,16 @@
 #define PI 3.1415926 // Math values
 
 #define MINIMAP_CELL_SIZE 32 // Minimap settings
-#define PLAYER_STEP 0.05
-#define PLAYER_ROTATION 0.05
+#define PLAYER_STEP 0.1
+#define PLAYER_ROTATION 0.1
 #define PLAYER_MINIMAP_SIZE 4
 
 #define W_KEY 13 // MLX Key Codes
 #define A_KEY 0
 #define S_KEY 1
 #define D_KEY 2
+#define LEFT_KEY 123
+#define RIGHT_KEY 124
 #define ESC_KEY 53
 #define ON_KEYDOWN 2 // MLX Event Hooks
 #define ON_KEYUP 3
@@ -39,75 +42,10 @@
 #define DIR_VERTICAL 'V'
 
 // Raycasting settings
-#define FOV 90 // Degrees of Field of Vision
+#define FOV 60 // Degrees of Field of Vision
 #define FOV_DENSITY 10 // How many rays per degree
 #define ONE_DEGREE 0.0174533 // One degree in radians
 #define RAY_STEP ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
-
-typedef enum { false, true } t_bool;
-
-typedef struct	s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img;
-
-typedef struct s_player
-{
-	float	x; // Position
-	float	y; // Position
-	float	dx; // delta X
-	float	dy; // Delta Y
-	float	angle;
-	t_bool	w_pressed;
-	t_bool	a_pressed;
-	t_bool	s_pressed;
-	t_bool	d_pressed;
-} t_player;
-
-typedef struct s_game
-{
-	void		*mlx;
-	void		*window;
-	t_player	player;
-	t_img		canvas;
-	int			map_width;
-	int			map_height;
-	char		**map;
-	t_img		texture;
-} t_game;
-
-typedef struct s_point
-{
-	float	x;
-	float	y;
-} t_point;
-
-typedef struct s_size
-{
-	float	w;
-	float	h;
-} t_size;
-
-typedef enum { NONE, NORTH, SOUTH, EAST, WEST } t_side;
-
-typedef struct s_ray
-{
-	float	x;
-	float	y;
-	float	angle;
-	float	x_near;
-	float	y_near;
-	float	x_offset;
-	float	y_offset;
-	float	distance;
-	float	real_height;
-	float	projected_height;
-	int		box_x;
-	t_side	collision_side;
-} t_ray;
 
 // Functions
 t_game	init_game_structure(void);

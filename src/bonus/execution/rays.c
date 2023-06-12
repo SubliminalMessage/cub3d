@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 18:22:02 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 01:09:19 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_ray(t_game *game, float angle, int count)
 	float px_per_ray = (float)W_WIDTH / (float)(FOV * FOV_DENSITY);
 	float ray_angle = game->player.angle - collision_ray.angle;
 	float correct_distance = collision_ray.distance * cos(ray_angle);
-	int wall_height = 32 * 20;
+	int wall_height = 32 * 30;
 	collision_ray.real_height = wall_height / correct_distance;
 	collision_ray.projected_height = collision_ray.real_height;
 	if (collision_ray.projected_height > W_HEIGHT)

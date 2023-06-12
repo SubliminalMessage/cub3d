@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/12 18:15:21 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 01:20:29 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,20 @@ void	draw_minimap_player(t_game *game)
 
 void	update_player_position(t_game *game)
 {
-	if (game->player.w_pressed)
+	float perp_dx = -game->player.dy;
+	float perp_dy = game->player.dx;
+
+	if (game->player.keys.w_pressed)
 	{
 		game->player.x += game->player.dx;
 		game->player.y += game->player.dy;
 	}
-	if (game->player.s_pressed)
+	if (game->player.keys.s_pressed)
 	{
 		game->player.x -= game->player.dx;
 		game->player.y -= game->player.dy;
 	}
-	if (game->player.a_pressed)
+	if (game->player.keys.left_pressed)
 	{
 		game->player.angle -= PLAYER_ROTATION;
 		if (game->player.angle < 0)
@@ -65,7 +68,17 @@ void	update_player_position(t_game *game)
 		game->player.dx = cos(game->player.angle) * PLAYER_STEP;
 		game->player.dy = sin(game->player.angle) * PLAYER_STEP;
 	}
-	if (game->player.d_pressed)
+	if (game->player.keys.a_pressed)
+	{
+		game->player.x -= perp_dx;
+		game->player.y -= perp_dy;
+	}
+	if (game->player.keys.d_pressed)
+	{
+		game->player.x += perp_dx;
+		game->player.y += perp_dy;
+	}
+	if (game->player.keys.right_pressed)
 	{
 		game->player.angle += PLAYER_ROTATION;
 		if (game->player.angle > 2 * PI)
