@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:53:44 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:34:36 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define DIR_VERTICAL 'V'
 
 // Raycasting settings
-#define FOV 30 // Degrees of Field of Vision
+#define FOV 80 // Degrees of Field of Vision
 #define FOV_DENSITY 10 // How many rays per degree
 #define ONE_DEGREE 0.0174533 // One degree in radians
 #define RAY_STEP ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next

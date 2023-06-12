@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:53:08 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:07:05 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	draw_minimap(t_game *game);
 int mapX = 8;
 int mapY = 8;
 int mapS = 64;
-char *raw_map = "11111111\n10100101\n10100011\n10000001\n10101001\n10101001\n10001011\n11111111"; // With walls
-//char *raw_map = "11111111\n10000001\n10000001\n10000001\n10000001\n10000001\n10000001\n11111111"; // Without walls
+//char *raw_map = "11111111\n10100101\n10100011\n10000001\n10101001\n10101001\n10001011\n11111111"; // With walls
+char *raw_map = "11111111\n10000001\n10000001\n10000001\n10010001\n10000001\n10000001\n11111111"; // Without walls
 
 void	draw_minimap_player(t_game *game)
 {
