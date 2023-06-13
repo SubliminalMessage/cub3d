@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 13:40:49 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:11:37 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	draw_minimap(t_game *game);
 int mapX = 8;
 int mapY = 8;
 int mapS = 64;
-//char *raw_map = "11111111\n10100101\n10100011\n10000001\n10101001\n10101001\n10001011\n11111111"; // With walls
-char *raw_map = "11111111\n10000001\n10000001\n10000001\n10010001\n10000001\n10000001\n11111111"; // Without walls
+char *raw_map = "11111111\n10100101\n10100011\n10000001\n10101001\n10101001\n10001011\n11111111"; // With walls
+//char *raw_map = "11111111\n10000001\n10000001\n10000001\n10010001\n10000001\n10000001\n11111111"; // Without walls
 
 void	draw_minimap_player(t_game *game)
 {
@@ -47,9 +47,26 @@ void	draw_minimap_player(t_game *game)
 
 void	move_player(t_game *game, float dx, float dy)
 {
-	game->player.x += dx;
-	game->player.y += dy;
-	// Todo: check collisions
+	float	multiplier;
+	float	final_x;
+	float	final_y;
+
+	multiplier = 5; // Leave it at 1 for Mandatory Part
+	final_x = game->player.x + dx * multiplier;
+	final_y = game->player.y + dy * multiplier;
+
+	/*
+	// Collisions for mandatory part (can get through walls, but can't get outside map)
+	if (final_x >= 0 && final_x < game->map_width)
+		game->player.x += dx;
+	if (final_y >= 0 && final_y < game->map_height)
+		game->player.y += dy;
+	*/
+	// Collisions for Bonus Part (can't get through any wall)
+	if (game->map[(int)floor(game->player.y)][(int)final_x] == '0')
+		game->player.x += dx;
+	if (game->map[(int)final_y][(int)floor(game->player.x)] == '0')
+		game->player.y += dy;
 }
 void	rotate_player(t_game *game, float angle)
 {

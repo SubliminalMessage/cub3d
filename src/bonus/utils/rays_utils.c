@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:58:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/11 14:12:08 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:06:35 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	calculate_collision(t_ray *ray, t_game *game)
 	map = size(game->map_width, game->map_height);
 	while (iteration < MAX_ITERATIONS)
 	{
-		if (ray->x < 0 || ray->x > map.w || ray->y < 0 || ray->y > map.h)
+		if (ray->x < 0 || ray->x >= map.w || ray->y < 0 || ray->y >= map.h)
 		{
 			iteration = MAX_ITERATIONS;
 			continue ;
