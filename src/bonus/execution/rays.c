@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 01:09:19 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:28:50 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	draw_ray(t_game *game, float angle, int count)
 		img_x = collision_ray.x - floor(collision_ray.x);
 	if (collision_ray.collision_side == EAST || collision_ray.collision_side == WEST)
 		img_x = collision_ray.y - floor(collision_ray.y);
+	if (collision_ray.collision_side == SOUTH || collision_ray.collision_side == WEST) // Gets inverted
+		img_x = 1 - img_x;
 
 	img_x = floor(img_x * img_size);
 	collision_ray.box_x  = (int) img_x;
