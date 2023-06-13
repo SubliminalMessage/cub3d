@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 01:20:29 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:40:49 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,47 +45,37 @@ void	draw_minimap_player(t_game *game)
 	draw_line(img, point(x1, y1), point(x1 + player->dx * 5000, y1 + player->dy * 5000), 0x3002CE);
 }
 
+void	move_player(t_game *game, float dx, float dy)
+{
+	game->player.x += dx;
+	game->player.y += dy;
+	// Todo: check collisions
+}
+void	rotate_player(t_game *game, float angle)
+{
+	game->player.angle += angle;
+	if (game->player.angle < 0)
+		game->player.angle += 2 * PI;
+	if (game->player.angle > 2 * PI)
+			game->player.angle -= 2 * PI;
+	game->player.dx = cos(game->player.angle) * PLAYER_STEP;
+	game->player.dy = sin(game->player.angle) * PLAYER_STEP;
+}
+
 void	update_player_position(t_game *game)
 {
-	float perp_dx = -game->player.dy;
-	float perp_dy = game->player.dx;
-
 	if (game->player.keys.w_pressed)
-	{
-		game->player.x += game->player.dx;
-		game->player.y += game->player.dy;
-	}
+		move_player(game, game->player.dx, game->player.dy);
 	if (game->player.keys.s_pressed)
-	{
-		game->player.x -= game->player.dx;
-		game->player.y -= game->player.dy;
-	}
-	if (game->player.keys.left_pressed)
-	{
-		game->player.angle -= PLAYER_ROTATION;
-		if (game->player.angle < 0)
-			game->player.angle += 2 * PI;
-		game->player.dx = cos(game->player.angle) * PLAYER_STEP;
-		game->player.dy = sin(game->player.angle) * PLAYER_STEP;
-	}
+		move_player(game, -game->player.dx, -game->player.dy);
 	if (game->player.keys.a_pressed)
-	{
-		game->player.x -= perp_dx;
-		game->player.y -= perp_dy;
-	}
+		move_player(game, game->player.dy, -game->player.dx);
 	if (game->player.keys.d_pressed)
-	{
-		game->player.x += perp_dx;
-		game->player.y += perp_dy;
-	}
+		move_player(game, -game->player.dy, game->player.dx);
+	if (game->player.keys.left_pressed)
+		rotate_player(game, -PLAYER_ROTATION);
 	if (game->player.keys.right_pressed)
-	{
-		game->player.angle += PLAYER_ROTATION;
-		if (game->player.angle > 2 * PI)
-			game->player.angle -= 2 * PI;
-		game->player.dx = cos(game->player.angle) * PLAYER_STEP;
-		game->player.dy = sin(game->player.angle) * PLAYER_STEP; // This two lines are shared between 'A' and 'D'.
-	}
+		rotate_player(game, PLAYER_ROTATION);
 }
 
 #define SKY_COLOR 0x3D3D3D
@@ -151,6 +141,8 @@ void	draw_minimap(t_game *game)
 				color = 0xFFFFFF;
 			else
 				color = 0x0F0F0F;
+			if (x == floor(game->player.x) && y == floor(game->player.y))
+				color = 0x424242;
 			int xo = x * MINIMAP_CELL_SIZE;
 			int yo = y * MINIMAP_CELL_SIZE;
 			int i = 1;
