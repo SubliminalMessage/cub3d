@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 16:46:41 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:08:39 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,24 +133,31 @@ void	draw_minimap(t_game *game)
 
 }
 
+t_img	new_texture(t_game *game, char *path, int width, int height)
+{
+	t_img img;
+
+	img.img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
+    if (img.img == NULL)
+    {
+        printf("Error loading texture '%s'\n", path);
+        close_window(game);
+    }
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	return (img);
+}
+
 int main(void)
 {
 	t_game	game;
 
 	game = init_game_structure();
-	int img_size = 32;
-	void *texture = mlx_xpm_file_to_image(game.mlx, "./assets/arrow.xpm", &img_size, &img_size);
-	if (!texture)
-	{
-		printf("Texture failed\n");
-		exit(1);
-	}
-	t_img game_texture;
-	game_texture.img = texture;
-	game_texture.addr = mlx_get_data_addr(game_texture.img, &game_texture.bits_per_pixel, &game_texture.line_length, &game_texture.endian);
+	game.debug_texture = new_texture(&game, "./assets/debug.xpm", 32, 32);
+	game.north_texture = new_texture(&game, "./assets/arrow_n.xpm", 32, 32);
+	game.south_texture = new_texture(&game, "./assets/arrow_s.xpm", 32, 32);
+	game.east_texture = new_texture(&game, "./assets/arrow_e.xpm", 32, 32);
+	game.west_texture = new_texture(&game, "./assets/arrow_w.xpm", 32, 32);
 
-
-	game.texture = game_texture;
 	game.map_height = 8;
 	game.map_width = 8;
 	game.map = ft_split(raw_map, '\n');

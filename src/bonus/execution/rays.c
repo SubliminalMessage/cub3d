@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 13:28:50 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:09:14 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,29 @@ int	get_color_from_image(t_img *img, int x, int y)
 
 void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 {
+	t_img	texture;
 	float	vertical_offset;
 	int		px;
 
 	vertical_offset = (ray.real_height - ray.projected_height) / 2;
 	px = 0;
+
+	texture = game->debug_texture;
+	if (ray.collision_side == NORTH)
+		texture = game->north_texture;
+	if (ray.collision_side == SOUTH)
+		texture = game->south_texture;
+	if (ray.collision_side == EAST)
+		texture = game->east_texture;
+	if (ray.collision_side == WEST)
+		texture = game->west_texture;
 	while (px < ray.projected_height)
 	{
 		int pixel_y = px + vertical_offset;
 
 		int box_y = floor(32 * (pixel_y / ray.real_height));
 		int box_x = ray.box_x;
-		int color = get_color_from_image(&game->texture, box_x, box_y);
+		int color = get_color_from_image(&texture, box_x, box_y);
 		int screen_y = ((W_HEIGHT / 2) - (ray.projected_height / 2)) + px;
 		place_pixel_at(&game->canvas, point(screen_x, screen_y), size(W_WIDTH, W_HEIGHT), color);
 
@@ -74,7 +85,7 @@ void	draw_ray(t_game *game, float angle, int count)
 		collision_ray.projected_height = W_HEIGHT;
 
 	float  img_x = 0;
-	int img_size = 32;
+	int img_size = 32; // ToDo: Change dynamically based on Side Texture (or simply send a value 0..1, and convert it on draw_ray_line())
 	// Get Box X
 	if (collision_ray.collision_side == NORTH || collision_ray.collision_side == SOUTH)
 		img_x = collision_ray.x - floor(collision_ray.x);
