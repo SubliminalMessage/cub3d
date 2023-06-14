@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 01:09:42 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:20:06 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_size size(float w, float h);
 t_ray	ray(t_game *game, float angle, char direction);
 t_ray min_ray(t_ray a, t_ray b);
 void	draw_ray(t_game *game, float angle, int count);
+void	update_player_position(t_game *game);
 
 #endif
