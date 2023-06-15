@@ -22,7 +22,7 @@
 - [X] Load and paint textures correctly
 - [ ] Be able to change the sky and floor colors
 - [ ] Convert the RGB colors to HEX values
-- [ ] Be able to set an starting position and angle
+- [X] Be able to set an starting position and angle
 - [X] Make the program end when `ESC` is pressed
 - [X] Make the program end when the red cross is pressed
 - [ ] Make the program exit be clean (no leaks)
@@ -31,19 +31,9 @@
 
 ##### Parsing
 
-- [ ] Make the user able to place doors on the map (`D ?`)
-- [ ] Make the user able to set the texture of the door
-- [ ] Make the user able to place sprites on the map (`S ?`)
-- [ ] Make the user able to set the texture of the sprite
+`Nothing :)`
 
 ##### Execution
 
 - [X] Make player collide with walls
-- [ ] Make a decent-looking Minimap
-- [ ] Create doors
-- [ ] Make users be able to open doors
-- [ ] Make users be able to close doors
-- [ ] Make the player be able to use the mouse to rotate the camera
-- [ ] Create sprites
-- [ ] Be able to show sprites correctly
-- [ ] Animate the sprites
+- [X] Make a decent-looking Minimap
