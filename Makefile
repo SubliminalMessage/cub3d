@@ -28,6 +28,7 @@ SRC_BONUS	=	src/bonus/main.c \
 				src/bonus/execution/hooks.c \
 				src/bonus/execution/rays.c \
 				src/bonus/execution/player_movement.c \
+				src/bonus/execution/minimap.c \
 				src/bonus/utils/math_utils.c \
 				src/bonus/utils/mlx_utils.c \
 				src/bonus/utils/rays_utils.c

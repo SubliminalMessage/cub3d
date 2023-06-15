@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:44:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 16:46:16 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:27:15 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	move_player(t_game *game, float dx, float dy)
 	multiplier = 1;
 	final_x = game->player.x + dx * multiplier;
 	final_y = game->player.y + dy * multiplier;
-
 	/*
 	// Collisions for mandatory part (can get through walls, but can't get outside map)
 	if (final_x >= 0 && final_x < game->map_width)

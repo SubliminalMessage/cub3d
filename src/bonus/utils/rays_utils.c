@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:58:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/13 14:06:35 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:18:08 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 static void	calculate_collision(t_ray *ray, t_game *game)
 {
-	int	iteration;
-	t_size map;
+	int		iteration;
+	t_size	map;
 	t_point	p;
 
 	iteration = 0;
@@ -100,7 +100,7 @@ static void	setup_vertical_ray(t_ray *ray, t_game *game)
 	calculate_collision(ray, game);
 }
 
-t_ray min_ray(t_ray a, t_ray b)
+t_ray	min_ray(t_ray a, t_ray b)
 {
 	if (a.distance < b.distance)
 		return (a);
@@ -109,7 +109,7 @@ t_ray min_ray(t_ray a, t_ray b)
 
 t_ray	ray(t_game *game, float angle, char direction)
 {
-	t_ray ray;
+	t_ray	ray;
 
 	ray.x = game->player.x;
 	ray.y = game->player.y;
