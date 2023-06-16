@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:08:01 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:50:21 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,22 @@ int	game_loop(t_game *game)
 	return (0);
 }
 
+int	handle_mouse_move(int x, int y, t_game *game)
+{
+	float distance;
+
+	if (!game->player.keys.space_pressed)
+	{
+		mlx_mouse_move(game->window, W_WIDTH / 2, -100000000);
+		distance = x - (W_WIDTH / 2) + (y * 0);
+		if (distance == 0)
+			return (0);
+		rotate_player(game, PLAYER_ROTATION * (distance / 20.5f));
+	}
+	return (0);
+}
+
+#define ON_MOUSEMOVE 6
 int main(void)
 {
 	t_game	game;
@@ -103,5 +119,8 @@ int main(void)
 	mlx_hook(game.window, ON_KEYUP, 0, handle_input_up, &game);
 	mlx_hook(game.window, 17, 1L < 17, close_window, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
+
+	mlx_hook(game.window, ON_MOUSEMOVE, 0, handle_mouse_move, &game);
+
 	mlx_loop(game.mlx);
 }

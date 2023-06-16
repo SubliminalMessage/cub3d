@@ -6,13 +6,13 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:44:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:27:15 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:20:29 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	rotate_player(t_game *game, float angle)
+void	rotate_player(t_game *game, float angle)
 {
 	game->player.angle += angle;
 	if (game->player.angle < 0)

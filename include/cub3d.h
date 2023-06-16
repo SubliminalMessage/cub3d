@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:16:41 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:20:38 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_ray	ray(t_game *game, float angle, char direction);
 t_ray	min_ray(t_ray a, t_ray b);
 void	draw_ray(t_game *game, float angle, int count);
 void	update_player_position(t_game *game);
+void	rotate_player(t_game *game, float angle);
 t_img	new_texture(t_game *game, char *path, int width, int height);
 void	draw_minimap_player(t_game *game);
 void	draw_minimap_background(t_game *game);

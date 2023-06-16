@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:56:48 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:11:26 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:17:22 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct t_keys
 	t_bool	d_pressed;
 	t_bool	left_pressed;
 	t_bool	right_pressed;
+	t_bool	space_pressed; // Bonus
 }			t_keys;
 
 typedef struct s_player
