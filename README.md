@@ -37,3 +37,4 @@
 
 - [X] Make player collide with walls
 - [X] Make a decent-looking Minimap
+- [X] Make the player be able to use the mouse to rotate the camera
