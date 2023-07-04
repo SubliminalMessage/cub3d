@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:54:26 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:08:11 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 	int			screen_y;
 	int			px;
 
-	texture = game->debug_texture;
-	if (ray.collision_side == NORTH)
-		texture = game->north_texture;
+	texture = game->north_texture;
 	if (ray.collision_side == SOUTH)
 		texture = game->south_texture;
 	if (ray.collision_side == EAST)
