@@ -6,14 +6,11 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:58:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:18:08 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:14:45 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-#define MAX_INT 2147483647
-#define MAX_ITERATIONS 100
 
 static void	calculate_collision(t_ray *ray, t_game *game)
 {
@@ -24,11 +21,11 @@ static void	calculate_collision(t_ray *ray, t_game *game)
 	iteration = 0;
 	p = point(game->player.x, game->player.y);
 	map = size(game->map_width, game->map_height);
-	while (iteration < MAX_ITERATIONS)
+	while (iteration < 100)
 	{
 		if (ray->x < 0 || ray->x >= map.w || ray->y < 0 || ray->y >= map.h)
 		{
-			iteration = MAX_ITERATIONS;
+			iteration = 100;
 			continue ;
 		}
 		if (game->map[(int)ray->y][(int)ray->x] == '0')
@@ -44,12 +41,16 @@ static void	calculate_collision(t_ray *ray, t_game *game)
 	ray->distance = MAX_INT;
 }
 
+/**
+ * @note Second IF is checking if ray is Looking Up
+ * @note Third IF is checking if ray is Looking Down
+*/
 static void	setup_horizontal_ray(t_ray *ray, t_game *game)
 {
 	ray->distance = MAX_INT;
 	if (ray->angle == PI || ray->angle == 0)
 		return ;
-	if (ray->angle > PI) // Looking up
+	if (ray->angle > PI)
 	{
 		ray->y_near = ray->y - floor(ray->y);
 		ray->x_near = -ray->y_near / tan(ray->angle);
@@ -59,7 +60,7 @@ static void	setup_horizontal_ray(t_ray *ray, t_game *game)
 		ray->x_offset = ray->y_offset / tan(ray->angle);
 		ray->collision_side = NORTH;
 	}
-	else if (ray->angle < PI) // Looking down
+	else if (ray->angle < PI)
 	{
 		ray->y_near = ceil(ray->y) - ray->y;
 		ray->x_near = ray->y_near / tan(ray->angle);
@@ -72,12 +73,16 @@ static void	setup_horizontal_ray(t_ray *ray, t_game *game)
 	calculate_collision(ray, game);
 }
 
+/**
+ * @note Second IF is checking if ray is Looking Left
+ * @note Third IF is checking if ray is Looking Right
+*/
 static void	setup_vertical_ray(t_ray *ray, t_game *game)
 {
 	ray->distance = MAX_INT;
 	if (ray->angle == (PI / 2) || ray->angle == (3 * PI) / 2)
 		return ;
-	if (ray->angle > (PI / 2) && ray->angle < (3 * PI) / 2) // Looking left
+	if (ray->angle > (PI / 2) && ray->angle < (3 * PI) / 2)
 	{
 		ray->x_near = floor(ray->x) - ray->x;
 		ray->y_near = ray->x_near * tan(ray->angle);
@@ -87,7 +92,7 @@ static void	setup_vertical_ray(t_ray *ray, t_game *game)
 		ray->y_offset = ray->x_offset * tan(ray->angle);
 		ray->collision_side = WEST;
 	}
-	else if (ray->angle > (PI / 2) || ray->angle < (3 * PI) / 2) // Looking right
+	else if (ray->angle > (PI / 2) || ray->angle < (3 * PI) / 2)
 	{
 		ray->x_near = ceil(ray->x) - ray->x;
 		ray->y_near = ray->x_near * -tan(ray->angle);
