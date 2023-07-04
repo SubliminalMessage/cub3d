@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:34:15 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:36:53 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int main(int argc, char **argv)
 	game.west_texture = new_texture(&game, map_file.texture[2], 32, 32);
 	game.east_texture = new_texture(&game,  map_file.texture[3], 32, 32);
 
-
 	// Add map & player coords manually
 	game.map_height = map_file.Y;
 	game.map_width = map_file.X;
@@ -119,9 +118,6 @@ int main(int argc, char **argv)
 
 	//printf("Char at: (%d, %d)\n", (int) game.player.x, (int) game.player.y);
 	game.map[(int)(game.player.y)][(int)(game.player.x)] = '0';
-
-
-
 
     // Start the game loop & stuff
 	mlx_hook(game.window, ON_KEYDOWN, 0, handle_input_down, &game);

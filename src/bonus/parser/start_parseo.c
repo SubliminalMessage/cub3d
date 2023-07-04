@@ -88,15 +88,18 @@ static void getMapSizeAndFill(t_fileContent *game)
 
 static float player_o(char c)
 {
+	float margin;
+
+	margin = 0.0001;
     if(c == 'N')
-        return(0.0);
+        return (ONE_DEGREE * (90 * 3) + margin);
     if(c == 'S')
-        return(0.0);
+        return (ONE_DEGREE * 90 + margin);
     if(c == 'W')
-        return(0.0);
+        return (ONE_DEGREE * (90 * 2) + margin);
     if(c == 'E')
-        return(0.0);
-    return (0.0);
+        return (0.0 + margin);
+    return (ONE_DEGREE * 90 + margin);
 }
 static void set_player_position(t_fileContent *game_data)
 {
