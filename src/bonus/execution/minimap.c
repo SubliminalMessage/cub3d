@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:00:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:28:03 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:08:24 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,28 @@ void	draw_square(t_game *game, t_point p, t_size s, int color)
 		while (x < s.w)
 		{
 			place_pixel_at(&game->canvas, point(p.x + x, p.y + y), color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_background(t_game *game)
+{
+	int x;
+	int y;
+	int color;
+
+	color = game->ceil_color;
+	y = 0;
+	while (y < W_HEIGHT)
+	{
+		x = 0;
+		if (y > W_HEIGHT / 2)
+			color = game->floor_color;
+		while (x < W_WIDTH)
+		{
+			place_pixel_at(&game->canvas, point(x, y), color);
 			x++;
 		}
 		y++;

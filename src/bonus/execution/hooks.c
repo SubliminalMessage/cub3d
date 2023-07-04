@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:26:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:34:10 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:07:22 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	close_window(t_game *game)
 {
 	(void) game;
-	system("leaks -q cub3d");
+	system("leaks -q cub3d || leaks -q cub3D");
 	exit(0);
 	return (0);
 }
 
-#define SPACE_KEY 49
 int	handle_input_down(int key_code, t_game *game)
 {
 	if (key_code == W_KEY)

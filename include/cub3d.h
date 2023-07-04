@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:41:46 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:09:14 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 # define PI 3.1415926 // Math values
 
 # define MINIMAP_CELL_SIZE 8 // Minimap settings
-# define PLAYER_STEP 0.1
-# define PLAYER_ROTATION 0.1
 # define PLAYER_MINIMAP_SIZE 4
+
+# define PLAYER_STEP 0.1 // Player Movement Settings
+# define PLAYER_ROTATION 0.1
 
 # define W_KEY 13 // MLX Key Codes
 # define A_KEY 0
@@ -38,8 +39,12 @@
 # define LEFT_KEY 123
 # define RIGHT_KEY 124
 # define ESC_KEY 53
+# define SPACE_KEY 49
+
 # define ON_KEYDOWN 2 // MLX Event Hooks
 # define ON_KEYUP 3
+# define ON_MOUSEMOVE 6
+
 # define DIR_HORIZONTAL 'H' // Rays settings
 # define DIR_VERTICAL 'V'
 
@@ -47,7 +52,7 @@
 # define FOV 60 // Degrees of Field of Vision
 # define FOV_DENSITY 10 // How many rays per degree
 # define ONE_DEGREE 0.0174533 // One degree in radians
-# define RAY_STEP ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
+# define RAY_STEP 0.00174533//ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
 
 // Functions
 t_game	init_game_structure(void);
@@ -69,8 +74,10 @@ t_img	new_texture(t_game *game, char *path, int width, int height);
 void	draw_minimap_player(t_game *game);
 void	draw_minimap_background(t_game *game);
 void	draw_minimap_walls(t_game *game);
+void	draw_background(t_game *game);
 void	draw_square(t_game *game, t_point p, t_size s, int color);
 int		rgb_to_hex(int r, int g, int b);
+int	handle_mouse_move(int x, int y, t_game *game); // Bonus
 
 // Parse
 void arr_init(t_arrayList *list);

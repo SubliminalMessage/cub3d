@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:44:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:30:58 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:09:05 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,19 @@ void	update_player_position(t_game *game)
 		rotate_player(game, -PLAYER_ROTATION);
 	if (game->player.keys.right_pressed)
 		rotate_player(game, PLAYER_ROTATION);
+}
+
+int	handle_mouse_move(int x, int y, t_game *game)
+{
+	float distance;
+
+	if (!game->player.keys.space_pressed)
+	{
+		mlx_mouse_move(game->window, W_WIDTH / 2, -100000000);
+		distance = x - (W_WIDTH / 2) + (y * 0);
+		if (distance == 0)
+			return (0);
+		rotate_player(game, PLAYER_ROTATION * (distance / 20.5f));
+	}
+	return (0);
 }
