@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:19:09 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:32:57 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:15:50 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ t_game	init_game_structure(void)
 {
 	t_game	game;
 
-	// MLX Setup
 	game.mlx = mlx_init();
 	game.window = mlx_new_window(game.mlx, W_WIDTH, W_HEIGHT, "Cub3D");
 	game.canvas = new_image(&game, W_WIDTH, W_HEIGHT);
-	// Player Setup
 	game.player.x = 3.5f;
 	game.player.y = 2.5f;
 	game.player.angle = PI / 2 + 0.001;

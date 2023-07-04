@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:00:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:08:24 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:17:38 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	draw_minimap_player(t_game *game)
 		j = -(PLAYER_MINIMAP_SIZE / 2);
 		while (j < (PLAYER_MINIMAP_SIZE / 2))
 		{
-			place_pixel_at(img, point(player->x * MINIMAP_CELL_SIZE + i + 16, player->y * MINIMAP_CELL_SIZE + j + 16), 0x840032);
+			place_pixel_at(img, point(player->x * MINIMAP_CELL_SIZE + i + 16,
+					player->y * MINIMAP_CELL_SIZE + j + 16), 0x840032);
 			j++;
 		}
 		i++;
@@ -39,9 +40,8 @@ void	draw_minimap_background(t_game *game)
 	int	x;
 	int	y;
 
-	// Draw background
-	draw_square(game, point(8, 8), size(8 * (game->map_width + 2), 8 * (game->map_height + 2)), 0x7180AC);
-	// Draw walls
+	draw_square(game, point(8, 8), size(8 * (game->map_width + 2),
+			8 * (game->map_height + 2)), 0x7180AC);
 	y = 0;
 	while (y < game->map_height)
 	{
@@ -49,9 +49,11 @@ void	draw_minimap_background(t_game *game)
 		while (x < game->map_width)
 		{
 			if (game->map[y][x] == '1')
-				draw_square(game, point(8 * (x + 2), 8 * (y + 2)), size(8, 8), 0x2B4570);
+				draw_square(game, point(8 * (x + 2),
+						8 * (y + 2)), size(8, 8), 0x2B4570);
 			else if (game->map[y][x] == '0')
-				draw_square(game, point(8 * (x + 2), 8 * (y + 2)), size(8, 8), 0x002642);
+				draw_square(game, point(8 * (x + 2),
+						8 * (y + 2)), size(8, 8), 0x002642);
 			x++;
 		}
 		y++;
@@ -70,7 +72,8 @@ void	draw_minimap_walls(t_game *game)
 		while (x < game->map_width)
 		{
 			if (game->map[y][x] == '1')
-				draw_square(game, point(8 * (x + 2), 8 * (y + 2)), size(8, 8), 0x2B4570);
+				draw_square(game, point(8 * (x + 2),
+						8 * (y + 2)), size(8, 8), 0x2B4570);
 			x++;
 		}
 		y++;
@@ -97,9 +100,9 @@ void	draw_square(t_game *game, t_point p, t_size s, int color)
 
 void	draw_background(t_game *game)
 {
-	int x;
-	int y;
-	int color;
+	int	x;
+	int	y;
+	int	color;
 
 	color = game->ceil_color;
 	y = 0;

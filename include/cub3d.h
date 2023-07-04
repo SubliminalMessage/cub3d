@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:09:14 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:14:59 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define W_WIDTH 1200 // Map Size
 # define TEST W_WIDTH / 16 // TODO: Too many values on define (AKA: Hardcode this)
 # define W_HEIGHT TEST * 9 // 16:9 Aspect Ratio
+
+# define MAX_INT 2147483647
 
 # define PI 3.1415926 // Math values
 

@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:44:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:09:05 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:18:25 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	update_player_position(t_game *game)
 
 int	handle_mouse_move(int x, int y, t_game *game)
 {
-	float distance;
+	float	distance;
 
 	if (!game->player.keys.space_pressed)
 	{
