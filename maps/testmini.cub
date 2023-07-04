@@ -5,9 +5,9 @@ EA ./assets/arrow_e.xpm
 
 
 
-F 1,1,1
+F 187,159,6
 
-C 255,1,1
+C 61,61,61
 SO            ./assets/arrow_s.xpm
 WE ./assets/arrow_w.xpm
 

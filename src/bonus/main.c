@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 18:36:53 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:45:09 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	draw_background(t_game *game)
 	int y;
 	int color;
 
-	color = SKY_COLOR;
+	color = game->ceil_color;
 	y = 0;
 	while (y < W_HEIGHT)
 	{
 		x = 0;
 		if (y > W_HEIGHT / 2)
-			color = FLOOR_COLOR;
+			color = game->floor_color;
 		while (x < W_WIDTH)
 		{
 			place_pixel_at(&game->canvas, point(x, y), color);
@@ -107,6 +107,11 @@ int main(int argc, char **argv)
 	game.south_texture = new_texture(&game,  map_file.texture[1], 32, 32);
 	game.west_texture = new_texture(&game, map_file.texture[2], 32, 32);
 	game.east_texture = new_texture(&game,  map_file.texture[3], 32, 32);
+
+	game.floor_color = rgb_to_hex(map_file.F[0], map_file.F[1], map_file.F[2]);
+	game.ceil_color = rgb_to_hex(map_file.C[0], map_file.C[1], map_file.C[2]);
+
+	printf("Floor color: %d\nCeil color: %d\n", game.floor_color, game.ceil_color);
 
 	// Add map & player coords manually
 	game.map_height = map_file.Y;

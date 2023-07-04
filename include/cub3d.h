@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 14:57:10 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:41:46 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	draw_minimap_player(t_game *game);
 void	draw_minimap_background(t_game *game);
 void	draw_minimap_walls(t_game *game);
 void	draw_square(t_game *game, t_point p, t_size s, int color);
+int		rgb_to_hex(int r, int g, int b);
 
 // Parse
 void arr_init(t_arrayList *list);

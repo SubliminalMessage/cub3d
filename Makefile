@@ -33,6 +33,7 @@ SRC_BONUS	=	src/bonus/main.c \
 				src/bonus/utils/mlx_utils.c \
 				src/bonus/utils/rays_utils.c \
 				src/bonus/utils/arraylist.c \
+				src/bonus/utils/color_utils.c \
 				src/bonus/parser/start_parseo.c \
 				src/bonus/parser/parseo.c \
 				src/bonus/parser/parse_utils.c \

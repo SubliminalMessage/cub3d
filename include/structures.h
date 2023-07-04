@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:56:48 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 14:51:24 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:42:45 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_game
 	t_img		south_texture;
 	t_img		east_texture;
 	t_img		west_texture;
+	int			floor_color;
+	int			ceil_color;
 }				t_game;
 
 typedef enum e_side { NONE, NORTH, SOUTH, EAST, WEST }	t_side;
