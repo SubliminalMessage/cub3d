@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:19:02 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:54:26 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,30 @@ t_bool	is_over_minimap(t_game *game, int x, int y)
 	int	minimap_width;
 	int	minimap_heigth;
 
-	minimap_width = MINIMAP_CELL_SIZE * (game->map_width + 2);
-	if (x >= MINIMAP_CELL_SIZE && x <= MINIMAP_CELL_SIZE + minimap_width)
+	minimap_width = MP_CELL_SZ * (game->map_width + 2);
+	if (x >= MP_CELL_SZ && x <= MP_CELL_SZ + minimap_width)
 	{
-		minimap_heigth = MINIMAP_CELL_SIZE * (game->map_height + 2);
-		if (y >= MINIMAP_CELL_SIZE && y <= MINIMAP_CELL_SIZE + minimap_heigth)
+		minimap_heigth = MP_CELL_SZ * (game->map_height + 2);
+		if (y >= MP_CELL_SZ && y <= MP_CELL_SZ + minimap_heigth)
 			return (true);
 	}
 	return (false);
 }
 
+typedef struct s_ray_line
+{
+	float	v_offset;
+	int		color;
+	int		box_y;
+}			t_ray_line;
+
 void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 {
-	t_img	texture;
-	float	vertical_offset;
-	int		px;
+	t_img		texture;
+	t_ray_line	info;
+	int			screen_y;
+	int			px;
 
-	px = -1;
-	vertical_offset = (ray.real_height - ray.projected_height) / 2;
 	texture = game->debug_texture;
 	if (ray.collision_side == NORTH)
 		texture = game->north_texture;
@@ -58,60 +64,80 @@ void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 		texture = game->east_texture;
 	if (ray.collision_side == WEST)
 		texture = game->west_texture;
+	info.v_offset = (ray.real_height - ray.projected_height) / 2;
+	px = -1;
 	while (++px <= ray.projected_height)
 	{
-		int pixel_y = px + vertical_offset;
-		int box_y = floor(32 * (pixel_y / ray.real_height));
-		int color = get_color_from_image(&texture, (int)ray.box_x, box_y);
-		int screen_y = ((W_HEIGHT / 2) - (ray.projected_height / 2)) + px;
+		info.box_y = floor(32 * ((px + info.v_offset) / ray.real_height));
+		info.color = get_color_from_image(&texture, (int)ray.box_x, info.box_y);
+		screen_y = ((W_HEIGHT / 2) - (ray.projected_height / 2)) + px;
 		if (!is_over_minimap(game, screen_x, screen_y))
-			place_pixel_at(&game->canvas, point(screen_x, screen_y), color);
+			place_pixel_at(&game->canvas,
+				point(screen_x, screen_y), info.color);
 	}
+}
+
+typedef struct s_ray_info
+{
+	float	ray_angle;
+	float	correct_distance;
+	float	px_per_ray;
+	float	img_x;
+	int		i;
+}			t_ray_info;
+
+float	correct_angle(float angle)
+{
+	angle -= 0.01;
+	if (angle < 0)
+		return (angle + PI * 2);
+	if (angle > PI * 2)
+		return (angle - PI * 2);
+	return (angle);
+}
+
+/**
+ * @note Sides SOUTH and WEST gets inverted
+*/
+void	save_ray_info(t_ray_info *info, t_game *game, t_ray col_ray)
+{
+	info->px_per_ray = (float)W_WIDTH / (float)(FOV * FOV_DENSITY);
+	info->ray_angle = game->player.angle - col_ray.angle;
+	info->correct_distance = col_ray.distance * cos(info->ray_angle);
+	info->img_x = 0;
+	if (col_ray.collision_side == NORTH || col_ray.collision_side == SOUTH)
+		info->img_x = col_ray.x - floor(col_ray.x);
+	if (col_ray.collision_side == EAST || col_ray.collision_side == WEST)
+		info->img_x = col_ray.y - floor(col_ray.y);
+	if (col_ray.collision_side == SOUTH || col_ray.collision_side == WEST)
+		info->img_x = 1 - info->img_x;
+	info->img_x = floor(info->img_x * 32);
 }
 
 void	draw_ray(t_game *game, float angle, int count)
 {
-	t_ray	collision_ray;
-	t_point	player;
-	t_point	collision;
+	t_ray		collision_ray;
+	t_point		player;
+	t_point		collision;
+	t_ray_info	ray_info;
 
-	angle -= 0.01;
-	if (angle < 0)
-		angle += PI * 2;
-	if (angle > PI * 2)
-		angle -= PI * 2;
+	angle = correct_angle(angle);
 	collision_ray = min_ray(ray(game, angle, 'H'), ray(game, angle, 'V'));
-	// Draw the Minimap //
-	player = point(2 * MINIMAP_CELL_SIZE + game->player.x * MINIMAP_CELL_SIZE, 2 * MINIMAP_CELL_SIZE + game->player.y * MINIMAP_CELL_SIZE);
-	collision = point(2 * MINIMAP_CELL_SIZE + collision_ray.x * MINIMAP_CELL_SIZE, 2 * MINIMAP_CELL_SIZE + collision_ray.y * MINIMAP_CELL_SIZE);
-	//draw_line(&game->canvas, player, collision, 0xA8D0DB); // Acqua
-	draw_line(&game->canvas, player, collision, 0xFFAFC5); // Pink
-	/////////////////////
-
-	// Get Real & Projected Heights
-	float px_per_ray = (float)W_WIDTH / (float)(FOV * FOV_DENSITY);
-	float ray_angle = game->player.angle - collision_ray.angle;
-	float correct_distance = collision_ray.distance * cos(ray_angle);
-	int wall_height = 32 * 30;
-	collision_ray.real_height = wall_height / correct_distance;
+	//// Draw the Minimap ////
+	player = point(2 * MP_CELL_SZ + game->player.x * MP_CELL_SZ,
+			2 * MP_CELL_SZ + game->player.y * MP_CELL_SZ);
+	collision = point(2 * MP_CELL_SZ + collision_ray.x * MP_CELL_SZ,
+			2 * MP_CELL_SZ + collision_ray.y * MP_CELL_SZ);
+	draw_line(&game->canvas, player, collision, 0xFFAFC5);
+	//////////////////////////
+	save_ray_info(&ray_info, game, collision_ray);
+	collision_ray.real_height = (32 * 30) / ray_info.correct_distance;
 	collision_ray.projected_height = collision_ray.real_height;
 	if (collision_ray.projected_height > W_HEIGHT)
 		collision_ray.projected_height = W_HEIGHT;
-
-	float  img_x = 0;
-	int img_size = 32; // ToDo: Change dynamically based on Side Texture (or simply send a value 0..1, and convert it on draw_ray_line())
-	// Get Box X
-	if (collision_ray.collision_side == NORTH || collision_ray.collision_side == SOUTH)
-		img_x = collision_ray.x - floor(collision_ray.x);
-	if (collision_ray.collision_side == EAST || collision_ray.collision_side == WEST)
-		img_x = collision_ray.y - floor(collision_ray.y);
-	if (collision_ray.collision_side == SOUTH || collision_ray.collision_side == WEST) // Gets inverted
-		img_x = 1 - img_x;
-
-	img_x = floor(img_x * img_size);
-	collision_ray.box_x  = (int) img_x;
-
-	int i = -1;
-	while (++i < px_per_ray)
-		draw_ray_line(game, collision_ray, ceil(count * px_per_ray) + i);
+	collision_ray.box_x = (int) ray_info.img_x;
+	ray_info.i = -1;
+	while (++(ray_info.i) < ray_info.px_per_ray)
+		draw_ray_line(game, collision_ray,
+			ceil(count * ray_info.px_per_ray) + ray_info.i);
 }

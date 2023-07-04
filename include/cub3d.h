@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:14:59 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:44:49 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define PI 3.1415926 // Math values
 
-# define MINIMAP_CELL_SIZE 8 // Minimap settings
+# define MP_CELL_SZ 8 // Minimap settings
 # define PLAYER_MINIMAP_SIZE 4
 
 # define PLAYER_STEP 0.1 // Player Movement Settings

@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:00:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:17:38 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:44:49 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	draw_minimap_player(t_game *game)
 		j = -(PLAYER_MINIMAP_SIZE / 2);
 		while (j < (PLAYER_MINIMAP_SIZE / 2))
 		{
-			place_pixel_at(img, point(player->x * MINIMAP_CELL_SIZE + i + 16,
-					player->y * MINIMAP_CELL_SIZE + j + 16), 0x840032);
+			place_pixel_at(img, point(player->x * MP_CELL_SZ + i + 16,
+					player->y * MP_CELL_SZ + j + 16), 0x840032);
 			j++;
 		}
 		i++;
