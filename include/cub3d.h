@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/16 13:20:38 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:57:10 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <structures.h>
+# include <fcntl.h>
 
 # define W_WIDTH 1200 // Map Size
 # define TEST W_WIDTH / 16 // TODO: Too many values on define (AKA: Hardcode this)
@@ -69,5 +70,27 @@ void	draw_minimap_player(t_game *game);
 void	draw_minimap_background(t_game *game);
 void	draw_minimap_walls(t_game *game);
 void	draw_square(t_game *game, t_point p, t_size s, int color);
+
+// Parse
+void arr_init(t_arrayList *list);
+void arr_add(t_arrayList *list, char *item);
+void arr_clear(t_arrayList *list);
+int	map_checker(t_arrayList list);
+int map_checker_r(t_arrayList list);
+int isRGB(int* n);
+int isTexture(char** path);
+int fileExist(char* path);
+int extenChecker(char* filename, char* extension);
+void removeNewLine(char *str);
+int check_comas_dig(char *str);
+char* appendChar(char* str, char c);
+int setCF(char *str, t_fileContent *game, int n);
+int parse_CF(char* line , t_fileContent *game);
+int parse_textures(char* line , t_fileContent *game);
+int vars_parse(char* line , t_fileContent *game);
+int read_file(char* argv,t_arrayList* lst,t_fileContent *game_data);
+void struct_game_init_textures(t_fileContent *game_data);
+void game_data_clear(t_fileContent *game_data);
+int start_parseo(t_fileContent *game_data, char* argv);
 
 #endif

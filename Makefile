@@ -3,7 +3,7 @@
 ### ---   ---   ---         ---   ---   --- ###
 
 CC	= gcc
-CFLAGS	= -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra #-g3 -fsanitize=address
 MLX = mlx/libmlx.a
 MLX_FLAGS = $(MLX) -framework OpenGL -framework AppKit
 
@@ -31,7 +31,14 @@ SRC_BONUS	=	src/bonus/main.c \
 				src/bonus/execution/minimap.c \
 				src/bonus/utils/math_utils.c \
 				src/bonus/utils/mlx_utils.c \
-				src/bonus/utils/rays_utils.c
+				src/bonus/utils/rays_utils.c \
+				src/bonus/utils/arraylist.c \
+				src/bonus/parser/start_parseo.c \
+				src/bonus/parser/parseo.c \
+				src/bonus/parser/parse_utils.c \
+				src/bonus/parser/map_checker.c \
+				src/bonus/parser/parse_textures.c \
+				src/bonus/parser/parse_rgb.c
 
 SRC_OBJS 	= $(SRC_BONUS:src/%.c=bin/%.o)
 

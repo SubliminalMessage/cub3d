@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:56:48 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/16 13:17:22 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:51:24 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,30 @@ typedef struct s_ray
 	int		box_x;
 	t_side	collision_side;
 }			t_ray;
+
+// parse
+
+typedef struct s_arrayList
+{
+    char **items;
+    int capacity;
+    int size;
+} t_arrayList;
+
+typedef struct s_fileContent
+{
+	int X;
+	int Y;
+	// NO, SO, WE, EA.
+	char *texture [4];
+	//0-R,1-G,2-B
+	int F[3];
+	int C[3];
+	t_arrayList map;
+	float player_x;
+	float player_y;
+	float player_o;
+
+} t_fileContent;
 
 #endif

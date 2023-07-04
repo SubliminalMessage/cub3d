@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:19:09 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:22:15 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:32:57 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_game	init_game_structure(void)
 	game.player.keys.d_pressed = false;
 	game.player.keys.left_pressed = false;
 	game.player.keys.right_pressed = false;
+	game.player.keys.space_pressed = false;
 	game.player.dx = cos(game.player.angle) * PLAYER_STEP;
 	game.player.dy = sin(game.player.angle) * PLAYER_STEP;
 	return (game);

@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/16 17:50:21 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:34:15 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,34 +87,43 @@ int	handle_mouse_move(int x, int y, t_game *game)
 }
 
 #define ON_MOUSEMOVE 6
-int main(void)
+int main(int argc, char **argv)
 {
+	t_fileContent map_file;
 	t_game	game;
-	int i = 0;
+
+	(void) argc;
+	if (!start_parseo(&map_file, argv[1]))
+	{
+		printf("Ha petao\n");
+		close_window(NULL);
+	}
 
 	game = init_game_structure(); // Init struct
 	// Add textures manually
-	game.debug_texture = new_texture(&game, "./assets/debug.xpm", 32, 32);
-	game.north_texture = new_texture(&game, "./assets/arrow_n.xpm", 32, 32);
-	game.south_texture = new_texture(&game, "./assets/arrow_s.xpm", 32, 32);
-	game.east_texture = new_texture(&game, "./assets/arrow_e.xpm", 32, 32);
-	game.west_texture = new_texture(&game, "./assets/arrow_w.xpm", 32, 32);
+
+	game.debug_texture = new_texture(&game, "./assets/debug.xpm", 32, 32); // Remove this
+	game.north_texture = new_texture(&game, map_file.texture[0], 32, 32);
+	game.south_texture = new_texture(&game,  map_file.texture[1], 32, 32);
+	game.west_texture = new_texture(&game, map_file.texture[2], 32, 32);
+	game.east_texture = new_texture(&game,  map_file.texture[3], 32, 32);
+
 
 	// Add map & player coords manually
-	game.map = ft_split(raw_map, '\n');
-	game.map_height = 14;
-	game.map_width = 33;
-	game.player.x = 25.5f;
-	game.player.y = 2.5f;
+	game.map_height = map_file.Y;
+	game.map_width = map_file.X;
+	game.player.x = map_file.player_x;
+	game.player.y = map_file.player_y;
+	game.player.angle = map_file.player_o;
+	game.map = map_file.map.items;
 
-	// Print map. TODO: Remove this lol
-	while (i < game.map_height)
-	{
-		printf("%s\n", game.map[i]);
-		i++;
-	}
+	//printf("Char at: (%d, %d)\n", (int) game.player.x, (int) game.player.y);
+	game.map[(int)(game.player.y)][(int)(game.player.x)] = '0';
 
-	// Start the game loop & stuff
+
+
+
+    // Start the game loop & stuff
 	mlx_hook(game.window, ON_KEYDOWN, 0, handle_input_down, &game);
 	mlx_hook(game.window, ON_KEYUP, 0, handle_input_up, &game);
 	mlx_hook(game.window, 17, 1L < 17, close_window, &game);
