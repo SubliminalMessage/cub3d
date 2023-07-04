@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/06/15 16:26:58 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:48:11 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 		texture = game->east_texture;
 	if (ray.collision_side == WEST)
 		texture = game->west_texture;
-	while (++px < ray.projected_height)
+	while (++px <= ray.projected_height)
 	{
 		int pixel_y = px + vertical_offset;
 		int box_y = floor(32 * (pixel_y / ray.real_height));
