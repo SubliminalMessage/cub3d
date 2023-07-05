@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 20:08:11 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:35:33 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	draw_ray_line(t_game *game, t_ray ray, int screen_x)
 		screen_y = ((W_HEIGHT / 2) - (ray.projected_height / 2)) + px;
 		if (!is_over_minimap(game, screen_x, screen_y))
 			place_pixel_at(&game->canvas,
-				point(screen_x, screen_y), info.color);
+							point(screen_x, screen_y),
+							info.color);
 	}
 }
 
@@ -123,9 +124,9 @@ void	draw_ray(t_game *game, float angle, int count)
 	collision_ray = min_ray(ray(game, angle, 'H'), ray(game, angle, 'V'));
 	//// Draw the Minimap ////
 	player = point(2 * MP_CELL_SZ + game->player.x * MP_CELL_SZ,
-			2 * MP_CELL_SZ + game->player.y * MP_CELL_SZ);
+					2 * MP_CELL_SZ + game->player.y * MP_CELL_SZ);
 	collision = point(2 * MP_CELL_SZ + collision_ray.x * MP_CELL_SZ,
-			2 * MP_CELL_SZ + collision_ray.y * MP_CELL_SZ);
+						2 * MP_CELL_SZ + collision_ray.y * MP_CELL_SZ);
 	draw_line(&game->canvas, player, collision, 0xFFAFC5);
 	//////////////////////////
 	save_ray_info(&ray_info, game, collision_ray);
@@ -133,9 +134,9 @@ void	draw_ray(t_game *game, float angle, int count)
 	collision_ray.projected_height = collision_ray.real_height;
 	if (collision_ray.projected_height > W_HEIGHT)
 		collision_ray.projected_height = W_HEIGHT;
-	collision_ray.box_x = (int) ray_info.img_x;
+	collision_ray.box_x = (int)ray_info.img_x;
 	ray_info.i = -1;
 	while (++(ray_info.i) < ray_info.px_per_ray)
-		draw_ray_line(game, collision_ray,
-			ceil(count * ray_info.px_per_ray) + ray_info.i);
+		draw_ray_line(game, collision_ray, ceil(count * ray_info.px_per_ray)
+				+ ray_info.i);
 }

@@ -6,22 +6,23 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:44:49 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:36:06 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <fcntl.h>
 # include <libft.h>
+# include <math.h>
 # include <mlx.h>
 # include <stdio.h>
-# include <math.h>
 # include <structures.h>
-# include <fcntl.h>
 
-# define W_WIDTH 1200 // Map Size
-# define TEST W_WIDTH / 16 // TODO: Too many values on define (AKA: Hardcode this)
+# define W_WIDTH 1200      // Map Size
+# define TEST W_WIDTH / 16
+	// TODO: Too many values on define (AKA: Hardcode this)
 # define W_HEIGHT TEST * 9 // 16:9 Aspect Ratio
 
 # define MAX_INT 2147483647
@@ -51,10 +52,11 @@
 # define DIR_VERTICAL 'V'
 
 // Raycasting settings
-# define FOV 60 // Degrees of Field of Vision
-# define FOV_DENSITY 10 // How many rays per degree
+# define FOV 60               // Degrees of Field of Vision
+# define FOV_DENSITY 10       // How many rays per degree
 # define ONE_DEGREE 0.0174533 // One degree in radians
-# define RAY_STEP 0.00174533//ONE_DEGREE / FOV_DENSITY // How much each ray is separated from the next
+# define RAY_STEP 0.00174533  //ONE_DEGREE / FOV_DENSITY
+	// How much each ray is separated from the next
 
 // Functions
 t_game	init_game_structure(void);
@@ -82,25 +84,25 @@ int		rgb_to_hex(int r, int g, int b);
 int	handle_mouse_move(int x, int y, t_game *game); // Bonus
 
 // Parse
-void arr_init(t_arrayList *list);
-void arr_add(t_arrayList *list, char *item);
-void arr_clear(t_arrayList *list);
-int	map_checker(t_arrayList list);
-int map_checker_r(t_arrayList list);
-int isRGB(int* n);
-int isTexture(char** path);
-int fileExist(char* path);
-int extenChecker(char* filename, char* extension);
-void removeNewLine(char *str);
-int check_comas_dig(char *str);
-char* appendChar(char* str, char c);
-int setCF(char *str, t_fileContent *game, int n);
-int parse_CF(char* line , t_fileContent *game);
-int parse_textures(char* line , t_fileContent *game);
-int vars_parse(char* line , t_fileContent *game);
-int read_file(char* argv,t_arrayList* lst,t_fileContent *game_data);
-void struct_game_init_textures(t_fileContent *game_data);
-void game_data_clear(t_fileContent *game_data);
-int start_parseo(t_fileContent *game_data, char* argv);
+void	arr_init(t_arrayList *list);
+void	arr_add(t_arrayList *list, char *item);
+void	arr_clear(t_arrayList *list);
+int		map_checker(t_arrayList list);
+int		map_checker_r(t_arrayList list);
+int		isRGB(int *n);
+int		isTexture(char **path);
+int		fileExist(char *path);
+int		extenChecker(char *filename, char *extension);
+void	removeNewLine(char *str);
+int		check_comas_dig(char *str);
+char	*appendChar(char *str, char c);
+int		setCF(char *str, t_fileContent *game, int n);
+int		parse_CF(char *line, t_fileContent *game);
+int		parse_textures(char *line, t_fileContent *game);
+int		vars_parse(char *line, t_fileContent *game);
+int		read_file(char *argv, t_arrayList *lst, t_fileContent *game_data);
+void	struct_game_init_textures(t_fileContent *game_data);
+void	game_data_clear(t_fileContent *game_data);
+int		start_parseo(t_fileContent *game_data, char *argv);
 
 #endif
