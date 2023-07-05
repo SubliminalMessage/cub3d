@@ -6,20 +6,21 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:31 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:47:38 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:31:58 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int con_( t_filecontent *game, int i)
+static int	con_(t_filecontent *game, int i)
 {
 	if (!exten_checker(game->texture[i], "xpm")
-	|| !file_exist(game->texture[i]))
+		|| !file_exist(game->texture[i]))
 		return (0);
 	return (1);
 }
-static int	err_(char *c, int i)
+
+static int	err_(char **c, int i)
 {
 	printf("[X] Error parseando las Texturas de: %s\n", c[i]);
 	return (0);
@@ -44,10 +45,10 @@ int	parse_textures(char *line, t_filecontent *game)
 			{
 				remove_new_line(line);
 				game->texture[i] = ft_strtrim(line + 2, " ");
-				return(con_(game,i));
+				return (con_(game, i));
 			}
 			else
-				return(err_(c,i));
+				return (err_(c, i));
 		}
 	}
 	return (1);

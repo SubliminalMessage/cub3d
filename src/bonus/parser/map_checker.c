@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:50 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 21:10:03 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:31:22 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	sstrlen(t_arraylist list, int i)
 		return (ft_strlen(list.items[i]) - 1);
 }
 
-static int	map_open_errors(int err, int i, int j, int position,
-		t_arraylist *list)
+static int	map_open_errors(int err, int i, int position, t_arraylist *list)
 {
 	if (err != 0)
 	{
@@ -29,7 +28,6 @@ static int	map_open_errors(int err, int i, int j, int position,
 			printf("[x] ERROR SIMBOLO DUPLICADO/DESCONOCIDO\n");
 		else if (err == 2)
 			printf("[x] ERROR MAPA\n");
-		printf("POSICION: %d , %d\n", i, j);
 		printf("LINEA : %s \n", list->items[i]);
 		i = 0;
 		while (i < list->size)
@@ -91,6 +89,5 @@ int	map_checker(t_arraylist list)
 		}
 		vars[0]++;
 	}
-	return (map_open_errors(vars[3], vars[0] - 1, vars[1] - 1, position,
-			&list));
+	return (map_open_errors(vars[3], vars[0] - 1, position, &list));
 }
