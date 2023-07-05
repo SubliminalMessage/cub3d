@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 21:01:33 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:01:27 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,12 @@ int		read_file(char *argv, t_arraylist *lst, t_filecontent *game_data);
 void	struct_game_init_textures(t_filecontent *game_data);
 void	game_data_clear(t_filecontent *game_data);
 int		start_parseo(t_filecontent *game_data, char *argv);
+void	rm_new_line(t_filecontent *game);
+void	append_spaces(t_arraylist *nwmp, char *str, int numSpaces);
+int		get_x_size(t_filecontent *game_data);
+void	get_size_fill(t_filecontent *game);
+float	player_o(char c);
+int		get_color_from_image(t_img *img, int x, int y);
+void	fill_with_spaces(t_filecontent *game);
 
 #endif

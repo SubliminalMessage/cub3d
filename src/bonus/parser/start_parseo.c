@@ -6,45 +6,11 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:49:11 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:01:13 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static void	rm_new_line(t_filecontent *game)
-{
-	t_arraylist	nwmp;
-	int			i;
-
-	i = 0;
-	arr_init(&nwmp);
-	while (i < game->map.size)
-	{
-		remove_new_line(game->map.items[i]);
-		arr_add(&nwmp, game->map.items[i]);
-		i++;
-	}
-	arr_clear(&game->map);
-	game->map = nwmp;
-}
-
-static void	append_spaces(t_arraylist *nwmp, char *str, int numSpaces)
-{
-	size_t	new_len;
-	char	*new_str;
-	size_t	len;
-
-	len = ft_strlen(str);
-	new_len = len + numSpaces;
-	new_str = malloc(new_len + 1);
-	ft_strlcpy(new_str, str, new_len + 1);
-	ft_memset(new_str + len, ' ', numSpaces);
-	new_str[new_len] = '\0';
-	arr_add(nwmp, new_str);
-	free(new_str);
-	free(str);
-}
 
 void	fill_with_spaces(t_filecontent *game)
 {
@@ -68,48 +34,6 @@ void	fill_with_spaces(t_filecontent *game)
 	}
 	arr_clear(&game->map);
 	game->map = nwmp;
-}
-
-static int	get_x_size(t_filecontent *game_data)
-{
-	int	i;
-	int	max;
-
-	i = -1;
-	max = 0;
-	while (++i < game_data->map.size)
-		if (ft_strlen(game_data->map.items[i]) > max)
-			max = ft_strlen(game_data->map.items[i]);
-	return (max);
-}
-
-static void	get_size_fill(t_filecontent *game)
-{
-	int	aux;
-
-	game->x = game->map.size;
-	rm_new_line(game);
-	game->y = get_x_size(game);
-	fill_with_spaces(game);
-	aux = game->x;
-	game->x = game->y;
-	game->y = aux;
-}
-
-static float	player_o(char c)
-{
-	float	margin;
-
-	margin = 0.0001;
-	if (c == 'N')
-		return (ONE_DEGREE * (90 * 3) + margin);
-	if (c == 'S')
-		return (ONE_DEGREE * 90 + margin);
-	if (c == 'W')
-		return (ONE_DEGREE * (90 * 2) + margin);
-	if (c == 'E')
-		return (0.0 + margin);
-	return (ONE_DEGREE * 90 + margin);
 }
 
 static void	set_player_position(t_filecontent *game_data)

@@ -6,25 +6,11 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 21:04:03 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:02:15 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-int	get_color_from_image(t_img *img, int x, int y)
-{
-	char	*dst;
-	int		length;
-	int		bpp;
-
-	if (x < 0 || y < 0 || x >= img->size.w || y >= img->size.h)
-		return (0);
-	length = img->line_length;
-	bpp = img->bits_per_pixel;
-	dst = img->addr + (y * length + x * (bpp / 8));
-	return (*(unsigned int *)dst);
-}
 
 t_bool	is_over_minimap(t_game *game, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:48:19 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 23:56:07 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,4 @@ int	file_exist(char *path)
 	}
 	close(fd);
 	return (0);
-}
-
-static t_bool	str_equals(char *a, char *b)
-{
-	int	a_len;
-
-	if (!a || !b)
-		return (a == NULL && b == NULL);
-	a_len = ft_strlen(a);
-	if (a_len != ft_strlen(b))
-		return (false);
-	return (ft_strncmp(a, b, a_len) == 0);
-}
-
-int	exten_checker(char *filename, char *extension)
-{
-	char	*dot;
-
-	if (!filename)
-		return (1);
-	dot = ft_strrchr(filename, '.');
-	if (dot != NULL)
-	{
-		if (str_equals(dot + 1, extension))
-			return (1);
-	}
-	return (0);
-}
-
-void	remove_new_line(char *str)
-{
-	char	*position;
-
-	position = ft_strchr(str, '\n');
-	if (position != NULL)
-	{
-		ft_memmove(position, position + 1, ft_strlen(position));
-	}
 }
