@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:50 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:49:36 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:10:03 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,33 +93,4 @@ int	map_checker(t_arraylist list)
 	}
 	return (map_open_errors(vars[3], vars[0] - 1, vars[1] - 1, position,
 			&list));
-}
-
-int	map_checker_recursive(t_arraylist list, int row, int col, int position,
-		int err)
-{
-	int	next_row;
-	int	next_col;
-
-	if (row < 0 || row >= list.size || col < 0 || col >= sstrlen(list, row)
-		|| err)
-		return (map_open_errors(err, row - 1, col - 1, position, &list));
-	if (ft_strchr("NSEW", list.items[row][col]))
-		position += 1;
-	err = check_simbol(row, col, list, position);
-	if (ft_strchr("0NSEW", list.items[row][col]) && !err)
-		err = check_open(row, col, sstrlen(list, row), list);
-	next_row = row;
-	next_col = col + 1;
-	if (next_col >= sstrlen(list, next_row))
-	{
-		next_row += 1;
-		next_col = 0;
-	}
-	return (map_checker_recursive(list, next_row, next_col, position, err));
-}
-
-int	map_checker_r(t_arraylist list)
-{
-	return (map_checker_recursive(list, 0, 0, 0, 0));
 }
