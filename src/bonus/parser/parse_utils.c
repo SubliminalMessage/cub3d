@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:27 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:48:19 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	is_rgb(int *n)
 	return ((n[0] >= 0 && n[0] <= 255) && (n[1] >= 0 && n[1] <= 255)
 		&& (n[2] >= 0 && n[2] <= 255));
 }
+
 int	is_texture(char **path)
 {
 	if (path[0] && path[1] && path[2] && path[3])
@@ -27,6 +28,7 @@ int	is_texture(char **path)
 			return (1);
 	return (0);
 }
+
 int	file_exist(char *path)
 {
 	int	fd;
@@ -52,7 +54,7 @@ static t_bool	str_equals(char *a, char *b)
 		return (false);
 	return (ft_strncmp(a, b, a_len) == 0);
 }
-//FT_STRCMP
+
 int	exten_checker(char *filename, char *extension)
 {
 	char	*dot;
@@ -63,9 +65,7 @@ int	exten_checker(char *filename, char *extension)
 	if (dot != NULL)
 	{
 		if (str_equals(dot + 1, extension))
-		{ // <? Changed
 			return (1);
-		}
 	}
 	return (0);
 }

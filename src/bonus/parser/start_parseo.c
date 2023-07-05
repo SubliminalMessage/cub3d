@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:16 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:49:11 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	fill_with_spaces(t_filecontent *game)
 	arr_clear(&game->map);
 	game->map = nwmp;
 }
+
 static int	get_x_size(t_filecontent *game_data)
 {
 	int	i;
@@ -81,6 +82,7 @@ static int	get_x_size(t_filecontent *game_data)
 			max = ft_strlen(game_data->map.items[i]);
 	return (max);
 }
+
 static void	get_size_fill(t_filecontent *game)
 {
 	int	aux;
@@ -89,7 +91,6 @@ static void	get_size_fill(t_filecontent *game)
 	rm_new_line(game);
 	game->y = get_x_size(game);
 	fill_with_spaces(game);
-	// El edu es dislexico
 	aux = game->x;
 	game->x = game->y;
 	game->y = aux;
@@ -110,6 +111,7 @@ static float	player_o(char c)
 		return (0.0 + margin);
 	return (ONE_DEGREE * 90 + margin);
 }
+
 static void	set_player_position(t_filecontent *game_data)
 {
 	int	i;

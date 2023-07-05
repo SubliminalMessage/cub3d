@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:35 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:37 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:48:42 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	check_comas_dig(char *str)
 	}
 	return (c);
 }
+
 char	*append_char(char *str, char c)
 {
 	size_t	length;

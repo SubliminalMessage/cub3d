@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:50 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:50 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:49:36 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	map_checker(t_arraylist list)
 	int	vars[4];
 	int	position;
 
-	//0 == i , 1 == j, 2 == r_size, 3 == err
 	position = 0;
 	vars[0] = 0;
 	vars[3] = 0;
@@ -119,6 +118,7 @@ int	map_checker_recursive(t_arraylist list, int row, int col, int position,
 	}
 	return (map_checker_recursive(list, next_row, next_col, position, err));
 }
+
 int	map_checker_r(t_arraylist list)
 {
 	return (map_checker_recursive(list, 0, 0, 0, 0));
