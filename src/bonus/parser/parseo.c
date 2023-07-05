@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:20 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:21 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:15:16 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ static int	read_file_(int fd, t_arraylist *lst, t_filecontent *game_data)
 	while (str)
 	{
 		if (v == 3)
-		{
 			arr_add(lst, str);
-		}
 		if (v == 1 && str[0] != '\n')
 		{
 			arr_add(lst, str);
@@ -60,14 +58,12 @@ static int	read_file_(int fd, t_arraylist *lst, t_filecontent *game_data)
 		if (v == 2)
 		{
 			close(fd);
-			free(str);
-			return (0);
+			return (free(str), 0);
 		}
 		free(str);
 		str = get_next_line(fd);
 	}
-	free(str);
-	return (1);
+	return (free(str), 1);
 }
 
 int	read_file(char *argv, t_arraylist *lst, t_filecontent *game_data)
