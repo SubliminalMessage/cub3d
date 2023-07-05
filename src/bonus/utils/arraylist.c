@@ -28,16 +28,16 @@ void	arr_init(t_arraylist *list)
     }*/
 void	arr_add(t_arraylist *list, char *item)
 {
-	char	**newItems;
+	char	**new_items;
 
 	list->items[list->size++] = ft_strdup(item);
 	if (list->size == list->capacity)
 	{
 		list->capacity *= 2;
-		newItems = (char **)malloc(list->capacity * sizeof(char *));
-		ft_memcpy(newItems, list->items, list->size * sizeof(char *));
+		new_items = (char **)malloc(list->capacity * sizeof(char *));
+		ft_memcpy(new_items, list->items, list->size * sizeof(char *));
 		free(list->items);
-		list->items = newItems;
+		list->items = new_items;
 	}
 }
 

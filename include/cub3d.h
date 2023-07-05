@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:41:05 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:43:35 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		file_exist(char *path);
 int		exten_checker(char *filename, char *extension);
 void	remove_new_line(char *str);
 int		check_comas_dig(char *str);
-char	*append_char(char *str, char c);s
+char	*append_char(char *str, char c);
 int		set_cf(char *str, t_filecontent *game, int n);
 int		parse_cf(char *line, t_filecontent *game);
 int		parse_textures(char *line, t_filecontent *game);

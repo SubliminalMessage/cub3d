@@ -91,8 +91,8 @@ int	map_checker(t_arraylist list)
 int	map_checker_recursive(t_arraylist list, int row, int col, int position,
 		int err)
 {
-	int	nextRow;
-	int	nextCol;
+	int	next_row;
+	int	next_col;
 
 	if (row < 0 || row >= list.size || col < 0 || col >= sstrlen(list, row)
 		|| err)
@@ -102,14 +102,14 @@ int	map_checker_recursive(t_arraylist list, int row, int col, int position,
 	err = check_simbol(row, col, list, position);
 	if (ft_strchr("0NSEW", list.items[row][col]) && !err)
 		err = check_open(row, col, sstrlen(list, row), list);
-	nextRow = row;
-	nextCol = col + 1;
-	if (nextCol >= sstrlen(list, nextRow))
+	next_row = row;
+	next_col = col + 1;
+	if (next_col >= sstrlen(list, next_row))
 	{
-		nextRow += 1;
-		nextCol = 0;
+		next_row += 1;
+		next_col = 0;
 	}
-	return (map_checker_recursive(list, nextRow, nextCol, position, err));
+	return (map_checker_recursive(list, next_row, next_col, position, err));
 }
 int	map_checker_r(t_arraylist list)
 {

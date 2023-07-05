@@ -1,7 +1,7 @@
 #include <cub3d.h>
 
 //TODO
-static void	rmvNewLine(t_filecontent *game)
+static void	rm_new_line(t_filecontent *game)
 {
 	t_arraylist	nwmp;
 	int			i;
@@ -18,25 +18,24 @@ static void	rmvNewLine(t_filecontent *game)
 	game->map = nwmp;
 }
 
-static void	appendSpaces(t_arraylist *nwmp, char *str, int numSpaces)
+static void	append_spaces(t_arraylist *nwmp, char *str, int numSpaces)
 {
-	size_t	newLen;
-	char	*newStr;
+	size_t	new_len;
+	char	*new_str;
 	size_t	len;
 
 	len = ft_strlen(str);
-	newLen = len + numSpaces;
-	newStr = malloc(newLen + 1);
-	ft_strlcpy(newStr, str, newLen + 1);
-	ft_memset(newStr + len, ' ', numSpaces);
-	newStr[newLen] = '\0';
-	arr_add(nwmp, newStr);
-	free(newStr);
+	new_len = len + numSpaces;
+	new_str = malloc(new_len + 1);
+	ft_strlcpy(new_str, str, new_len + 1);
+	ft_memset(new_str + len, ' ', numSpaces);
+	new_str[new_len] = '\0';
+	arr_add(nwmp, new_str);
+	free(new_str);
 	free(str);
-	//return (newStr); // <??
 }
 
-void	fillWithSpaces(t_filecontent *game)
+void	fill_with_spaces(t_filecontent *game)
 {
 	int			i;
 	char		*str;
@@ -48,7 +47,7 @@ void	fillWithSpaces(t_filecontent *game)
 	{
 		str = ft_strdup(game->map.items[i]);
 		if ((game->y - ft_strlen(str)) > 0)
-			appendSpaces(&nwmp, str, game->y - ft_strlen(str));
+			append_spaces(&nwmp, str, game->y - ft_strlen(str));
 		else
 		{
 			arr_add(&nwmp, str);
@@ -59,7 +58,7 @@ void	fillWithSpaces(t_filecontent *game)
 	arr_clear(&game->map);
 	game->map = nwmp;
 }
-static int	getXSize(t_filecontent *game_data)
+static int	get_x_size(t_filecontent *game_data)
 {
 	int	i;
 	int	max;
@@ -71,14 +70,14 @@ static int	getXSize(t_filecontent *game_data)
 			max = ft_strlen(game_data->map.items[i]);
 	return (max);
 }
-static void	getMapSizeAndFill(t_filecontent *game)
+static void	get_size_fill(t_filecontent *game)
 {
 	int	aux;
 
 	game->x = game->map.size;
-	rmvNewLine(game);
-	game->y = getXSize(game);
-	fillWithSpaces(game);
+	rm_new_line(game);
+	game->y = get_x_size(game);
+	fill_with_spaces(game);
 	// El edu es dislexico
 	aux = game->x;
 	game->x = game->y;
@@ -109,9 +108,9 @@ static void	set_player_position(t_filecontent *game_data)
 	while (i < game_data->map.size)
 	{
 		j = 0;
-		while (j < ft_strlen(game_data->map.items[i])) // <<? Changed
+		while (j < ft_strlen(game_data->map.items[i]))
 		{
-			if (ft_strchr("NSWE", game_data->map.items[i][j])) // <? Changed
+			if (ft_strchr("NSWE", game_data->map.items[i][j]))
 			{
 				game_data->player_x = j + 0.5;
 				game_data->player_y = i + 0.5;
@@ -150,18 +149,6 @@ int	start_parseo(t_filecontent *game_data, char *argv)
 		return (0);
 	}
 	set_player_position(game_data);
-	getMapSizeAndFill(game_data);
-	printf("---DEBUG---\n");
-	printf("Textures:\n");
-	printf("\tNO: '%s'\n", game_data->texture[0]);
-	printf("\tSO: '%s'\n", game_data->texture[1]);
-	printf("\tWE: '%s'\n", game_data->texture[2]);
-	printf("\tEA: '%s'\n", game_data->texture[3]);
-	printf("Player:\n");
-	printf("\tx: %f\n", game_data->player_x);
-	printf("\ty: %f\n", game_data->player_y);
-	printf("\to: %f\n", game_data->player_o);
-	printf("Map:\n");
-	printf("\tWidth: %d\n\tHeight: %d\n", game_data->x, game_data->x);
+	get_size_fill(game_data);
 	return (1);
 }

@@ -21,14 +21,14 @@ int	check_comas_dig(char *str)
 char	*append_char(char *str, char c)
 {
 	size_t	length;
-	char	*newStr;
+	char	*new_str;
 
 	length = ft_strlen(str);
-	newStr = malloc((length + 2) * sizeof(char));
-	ft_strlcpy(newStr, str, length + 1);
-	newStr[length] = c;
-	newStr[length + 1] = '\0';
-	return (newStr);
+	new_str = malloc((length + 2) * sizeof(char));
+	ft_strlcpy(new_str, str, length + 1);
+	new_str[length] = c;
+	new_str[length + 1] = '\0';
+	return (new_str);
 }
 
 int	set_cf(char *str, t_filecontent *game, int n)
