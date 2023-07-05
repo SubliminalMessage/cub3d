@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:56:48 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:38:39 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:02:26 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ typedef struct t_keys
 	t_bool		d_pressed;
 	t_bool		left_pressed;
 	t_bool		right_pressed;
-	t_bool space_pressed; // Bonus
+	t_bool		space_pressed;
 }				t_keys;
 
 typedef struct s_player
 {
-	float x;  // Position
-	float y;  // Position
-	float dx; // delta X
-	float dy; // Delta Y
-	float		angle;
-	t_keys		keys;
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	angle;
+	t_keys	keys;
 }				t_player;
 
 typedef struct s_game
@@ -104,8 +104,6 @@ typedef struct s_ray
 	t_side		collision_side;
 }				t_ray;
 
-// parse
-
 typedef struct s_arraylist
 {
 	char		**items;
@@ -117,9 +115,7 @@ typedef struct s_filecontent
 {
 	int			x;
 	int			y;
-	// NO, SO, WE, EA.
 	char		*texture[4];
-	//0-R,1-G,2-B
 	int			f[3];
 	int			c[3];
 	t_arraylist	map;

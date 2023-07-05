@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:43:35 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:01:33 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 # include <structures.h>
 
 # define W_WIDTH 1200      // Map Size
-# define TEST W_WIDTH / 16
-	// TODO: Too many values on define (AKA: Hardcode this)
-# define W_HEIGHT TEST * 9 // 16:9 Aspect Ratio
+# define W_HEIGHT 675//(W_WIDTH / 16) * 9 // 16:9 Aspect Ratio
 
 # define MAX_INT 2147483647
 
@@ -81,7 +79,7 @@ void	draw_minimap_walls(t_game *game);
 void	draw_background(t_game *game);
 void	draw_square(t_game *game, t_point p, t_size s, int color);
 int		rgb_to_hex(int r, int g, int b);
-int	handle_mouse_move(int x, int y, t_game *game); // Bonus
+int		handle_mouse_move(int x, int y, t_game *game); // Bonus
 
 // Parse
 void	arr_init(t_arraylist *list);
