@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:35 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:48:42 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:13:38 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	set_cf(char *str, t_filecontent *game, int n)
 			data[0][0] = '\0';
 		}
 	}
-	free(data[0]);
-	return (1);
+	return (free(data[0]), 1);
 }
 
 int	parse_cf(char *line, t_filecontent *game)
@@ -84,10 +83,7 @@ int	parse_cf(char *line, t_filecontent *game)
 		remove_new_line(line);
 		ax = ft_strtrim(line + 1, " ");
 		if (check_comas_dig(ax) != 2)
-		{
-			free(ax);
-			return (0);
-		}
+			return (free(ax), 0);
 		if (line[0] == 'F')
 		{
 			r = set_cf(ax, game, 0);
