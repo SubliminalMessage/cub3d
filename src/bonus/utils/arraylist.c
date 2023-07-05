@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arraylist.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/05 20:46:06 by dangonza          #+#    #+#             */
+/*   Updated: 2023/07/05 20:46:07 by dangonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cub3d.h>
 
 void	*ft_realloc(void *ptr, size_t newSize)
@@ -17,15 +29,7 @@ void	arr_init(t_arraylist *list)
 	list->capacity = 1;
 	list->size = 0;
 }
-//FT_REALLOC???
-/*
-    list->items[list->size++] = ft_strdup(item);
-    if (list->size == list->capacity)
-    {
-        list->capacity *= 2;
-        list->items = (char **)ft_realloc(list->items, list->capacity
-		* sizeof(char *));
-    }*/
+
 void	arr_add(t_arraylist *list, char *item)
 {
 	char	**new_items;

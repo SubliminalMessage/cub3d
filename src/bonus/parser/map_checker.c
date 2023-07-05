@@ -1,6 +1,16 @@
-#include <cub3d.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/05 20:46:50 by dangonza          #+#    #+#             */
+/*   Updated: 2023/07/05 20:46:50 by dangonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//UTILS
+#include <cub3d.h>
 
 int	sstrlen(t_arraylist list, int i)
 {
@@ -10,7 +20,6 @@ int	sstrlen(t_arraylist list, int i)
 		return (ft_strlen(list.items[i]) - 1);
 }
 
-//THIS FILE
 static int	map_open_errors(int err, int i, int j, int position,
 		t_arraylist *list)
 {
@@ -87,7 +96,6 @@ int	map_checker(t_arraylist list)
 			&list));
 }
 
-//RECURSIVI WONDER
 int	map_checker_recursive(t_arraylist list, int row, int col, int position,
 		int err)
 {
