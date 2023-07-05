@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:37:29 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:41:05 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,15 @@ void	arr_add(t_arraylist *list, char *item);
 void	arr_clear(t_arraylist *list);
 int		map_checker(t_arraylist list);
 int		map_checker_r(t_arraylist list);
-int		isRGB(int *n);
-int		isTexture(char **path);
-int		fileExist(char *path);
-int		extenChecker(char *filename, char *extension);
-void	removeNewLine(char *str);
+int		is_rgb(int *n);
+int		is_texture(char **path);
+int		file_exist(char *path);
+int		exten_checker(char *filename, char *extension);
+void	remove_new_line(char *str);
 int		check_comas_dig(char *str);
-char	*appendChar(char *str, char c);
-int		setCF(char *str, t_filecontent *game, int n);
-int		parse_CF(char *line, t_filecontent *game);
+char	*append_char(char *str, char c);s
+int		set_cf(char *str, t_filecontent *game, int n);
+int		parse_cf(char *line, t_filecontent *game);
 int		parse_textures(char *line, t_filecontent *game);
 int		vars_parse(char *line, t_filecontent *game);
 int		read_file(char *argv, t_arraylist *lst, t_filecontent *game_data);

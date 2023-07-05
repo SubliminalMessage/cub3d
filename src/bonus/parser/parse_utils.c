@@ -1,21 +1,21 @@
 #include <cub3d.h>
 
-int	isRGB(int *n)
+int	is_rgb(int *n)
 {
 	return ((n[0] >= 0 && n[0] <= 255) && (n[1] >= 0 && n[1] <= 255)
 		&& (n[2] >= 0 && n[2] <= 255));
 }
-int	isTexture(char **path)
+int	is_texture(char **path)
 {
 	if (path[0] && path[1] && path[2] && path[3])
-		if (extenChecker(path[0], "xpm") && extenChecker(path[1], "xpm")
-			&& extenChecker(path[2], "xpm") && extenChecker(path[3], "xpm")
-			&& fileExist(path[0]) && fileExist(path[1]) && fileExist(path[2])
-			&& fileExist(path[3]))
+		if (exten_checker(path[0], "xpm") && exten_checker(path[1], "xpm")
+			&& exten_checker(path[2], "xpm") && exten_checker(path[3], "xpm")
+			&& file_exist(path[0]) && file_exist(path[1]) && file_exist(path[2])
+			&& file_exist(path[3]))
 			return (1);
 	return (0);
 }
-int	fileExist(char *path)
+int	file_exist(char *path)
 {
 	int	fd;
 
@@ -41,7 +41,7 @@ static t_bool	str_equals(char *a, char *b)
 	return (ft_strncmp(a, b, a_len) == 0);
 }
 //FT_STRCMP
-int	extenChecker(char *filename, char *extension)
+int	exten_checker(char *filename, char *extension)
 {
 	char	*dot;
 
@@ -58,7 +58,7 @@ int	extenChecker(char *filename, char *extension)
 	return (0);
 }
 
-void	removeNewLine(char *str)
+void	remove_new_line(char *str)
 {
 	char	*position;
 

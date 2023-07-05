@@ -10,7 +10,7 @@ static void	rmvNewLine(t_filecontent *game)
 	arr_init(&nwmp);
 	while (i < game->map.size)
 	{
-		removeNewLine(game->map.items[i]);
+		remove_new_line(game->map.items[i]);
 		arr_add(&nwmp, game->map.items[i]);
 		i++;
 	}
@@ -129,7 +129,7 @@ int	start_parseo(t_filecontent *game_data, char *argv)
 {
 	struct_game_init_textures(game_data);
 	arr_init(&game_data->map);
-	if (!extenChecker(argv, "cub"))
+	if (!exten_checker(argv, "cub"))
 	{
 		printf("[x] ERROR EXTENSION ERRONEA\n");
 		game_data_clear(game_data);

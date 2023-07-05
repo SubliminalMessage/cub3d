@@ -18,7 +18,7 @@ int	check_comas_dig(char *str)
 	}
 	return (c);
 }
-char	*appendChar(char *str, char c)
+char	*append_char(char *str, char c)
 {
 	size_t	length;
 	char	*newStr;
@@ -31,7 +31,7 @@ char	*appendChar(char *str, char c)
 	return (newStr);
 }
 
-int	setCF(char *str, t_filecontent *game, int n)
+int	set_cf(char *str, t_filecontent *game, int n)
 {
 	char	*data[2];
 	int		i[2];
@@ -44,7 +44,7 @@ int	setCF(char *str, t_filecontent *game, int n)
 	{
 		if (str[i[0]] != ',')
 		{
-			data[1] = appendChar(data[0], str[i[0]]);
+			data[1] = append_char(data[0], str[i[0]]);
 			free(data[0]);
 			data[0] = data[1];
 		}
@@ -61,7 +61,7 @@ int	setCF(char *str, t_filecontent *game, int n)
 	return (1);
 }
 
-int	parse_CF(char *line, t_filecontent *game)
+int	parse_cf(char *line, t_filecontent *game)
 {
 	char	*ax;
 	int		r;
@@ -70,7 +70,7 @@ int	parse_CF(char *line, t_filecontent *game)
 	if (((line[0] == 'F') || (line[0] == 'C')) && (ft_strchr(line, ' ')
 			- line > 0))
 	{
-		removeNewLine(line);
+		remove_new_line(line);
 		ax = ft_strtrim(line + 1, " ");
 		if (check_comas_dig(ax) != 2)
 		{
@@ -79,13 +79,13 @@ int	parse_CF(char *line, t_filecontent *game)
 		}
 		if (line[0] == 'F')
 		{
-			r = setCF(ax, game, 0);
-			r = isRGB(game->f);
+			r = set_cf(ax, game, 0);
+			r = is_rgb(game->f);
 		}
 		else
 		{
-			setCF(ax, game, 1);
-			r = isRGB(game->c);
+			set_cf(ax, game, 1);
+			r = is_rgb(game->c);
 		}
 		free(ax);
 	}

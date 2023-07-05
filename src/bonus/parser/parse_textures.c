@@ -17,10 +17,10 @@ int	parse_textures(char *line, t_filecontent *game)
 		{
 			if (!game->texture[i])
 			{
-				removeNewLine(line);
+				remove_new_line(line);
 				game->texture[i] = ft_strtrim(line + 2, " ");
-				if (!extenChecker(game->texture[i], "xpm")
-					|| !fileExist(game->texture[i]))
+				if (!exten_checker(game->texture[i], "xpm")
+					|| !file_exist(game->texture[i]))
 					return (0);
 				return (1);
 			}

@@ -12,12 +12,12 @@ int	vars_parse(char *line, t_filecontent *game)
 		printf("[x] ERROR TEXTURAS\n LINE: %s\n", line);
 		return (2);
 	}
-	if (!parse_CF(line, game))
+	if (!parse_cf(line, game))
 	{
 		printf("[x] ERROR COLORES DEL TECHO/SUELO\n LINE: %s\n", line);
 		return (2);
 	}
-	if (isTexture(game->texture) && isRGB(game->f) && isRGB(game->c))
+	if (is_texture(game->texture) && is_rgb(game->f) && is_rgb(game->c))
 	{
 		printf("VARIABLES OK\n***START CHECK MAP***\n");
 		return (1);
