@@ -11,7 +11,7 @@ void	*ft_realloc(void *ptr, size_t newSize)
 	return (new_address);
 }
 
-void	arr_init(t_arrayList *list)
+void	arr_init(t_arraylist *list)
 {
 	list->items = (char **)malloc(1 * sizeof(char *));
 	list->capacity = 1;
@@ -26,7 +26,7 @@ void	arr_init(t_arrayList *list)
         list->items = (char **)ft_realloc(list->items, list->capacity
 		* sizeof(char *));
     }*/
-void	arr_add(t_arrayList *list, char *item)
+void	arr_add(t_arraylist *list, char *item)
 {
 	char	**newItems;
 
@@ -41,7 +41,7 @@ void	arr_add(t_arrayList *list, char *item)
 	}
 }
 
-void	arr_clear(t_arrayList *list)
+void	arr_clear(t_arraylist *list)
 {
 	int	i;
 

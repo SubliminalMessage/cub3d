@@ -1,6 +1,6 @@
 #include <cub3d.h>
 
-int	vars_parse(char *line, t_fileContent *game)
+int	vars_parse(char *line, t_filecontent *game)
 {
 	if (!ft_strchr("NSWEFC", line[0]) && line[0] != '\n')
 	{
@@ -17,7 +17,7 @@ int	vars_parse(char *line, t_fileContent *game)
 		printf("[x] ERROR COLORES DEL TECHO/SUELO\n LINE: %s\n", line);
 		return (2);
 	}
-	if (isTexture(game->texture) && isRGB(game->F) && isRGB(game->C))
+	if (isTexture(game->texture) && isRGB(game->f) && isRGB(game->c))
 	{
 		printf("VARIABLES OK\n***START CHECK MAP***\n");
 		return (1);
@@ -25,7 +25,7 @@ int	vars_parse(char *line, t_fileContent *game)
 	return (0);
 }
 
-static int	read_file_(int fd, t_arrayList *lst, t_fileContent *game_data)
+static int	read_file_(int fd, t_arraylist *lst, t_filecontent *game_data)
 {
 	int		v;
 	char	*str;
@@ -58,7 +58,7 @@ static int	read_file_(int fd, t_arrayList *lst, t_fileContent *game_data)
 	return (1);
 }
 
-int	read_file(char *argv, t_arrayList *lst, t_fileContent *game_data)
+int	read_file(char *argv, t_arraylist *lst, t_filecontent *game_data)
 {
 	int	fd;
 	int	r;
@@ -80,21 +80,21 @@ int	read_file(char *argv, t_arrayList *lst, t_fileContent *game_data)
 	return (r);
 }
 
-void	struct_game_init_textures(t_fileContent *game_data)
+void	struct_game_init_textures(t_filecontent *game_data)
 {
 	game_data->texture[0] = NULL;
 	game_data->texture[1] = NULL;
 	game_data->texture[2] = NULL;
 	game_data->texture[3] = NULL;
-	game_data->F[0] = -1;
-	game_data->F[1] = -1;
-	game_data->F[2] = -1;
-	game_data->C[0] = -1;
-	game_data->C[1] = -1;
-	game_data->C[2] = -1;
+	game_data->f[0] = -1;
+	game_data->f[1] = -1;
+	game_data->f[2] = -1;
+	game_data->c[0] = -1;
+	game_data->c[1] = -1;
+	game_data->c[2] = -1;
 }
 
-void	game_data_clear(t_fileContent *game_data)
+void	game_data_clear(t_filecontent *game_data)
 {
 	if (game_data->texture[0] != NULL)
 		free(game_data->texture[0]);

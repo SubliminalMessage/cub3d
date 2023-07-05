@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:36:06 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:37:29 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int		rgb_to_hex(int r, int g, int b);
 int	handle_mouse_move(int x, int y, t_game *game); // Bonus
 
 // Parse
-void	arr_init(t_arrayList *list);
-void	arr_add(t_arrayList *list, char *item);
-void	arr_clear(t_arrayList *list);
-int		map_checker(t_arrayList list);
-int		map_checker_r(t_arrayList list);
+void	arr_init(t_arraylist *list);
+void	arr_add(t_arraylist *list, char *item);
+void	arr_clear(t_arraylist *list);
+int		map_checker(t_arraylist list);
+int		map_checker_r(t_arraylist list);
 int		isRGB(int *n);
 int		isTexture(char **path);
 int		fileExist(char *path);
@@ -96,13 +96,13 @@ int		extenChecker(char *filename, char *extension);
 void	removeNewLine(char *str);
 int		check_comas_dig(char *str);
 char	*appendChar(char *str, char c);
-int		setCF(char *str, t_fileContent *game, int n);
-int		parse_CF(char *line, t_fileContent *game);
-int		parse_textures(char *line, t_fileContent *game);
-int		vars_parse(char *line, t_fileContent *game);
-int		read_file(char *argv, t_arrayList *lst, t_fileContent *game_data);
-void	struct_game_init_textures(t_fileContent *game_data);
-void	game_data_clear(t_fileContent *game_data);
-int		start_parseo(t_fileContent *game_data, char *argv);
+int		setCF(char *str, t_filecontent *game, int n);
+int		parse_CF(char *line, t_filecontent *game);
+int		parse_textures(char *line, t_filecontent *game);
+int		vars_parse(char *line, t_filecontent *game);
+int		read_file(char *argv, t_arraylist *lst, t_filecontent *game_data);
+void	struct_game_init_textures(t_filecontent *game_data);
+void	game_data_clear(t_filecontent *game_data);
+int		start_parseo(t_filecontent *game_data, char *argv);
 
 #endif

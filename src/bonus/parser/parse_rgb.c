@@ -31,7 +31,7 @@ char	*appendChar(char *str, char c)
 	return (newStr);
 }
 
-int	setCF(char *str, t_fileContent *game, int n)
+int	setCF(char *str, t_filecontent *game, int n)
 {
 	char	*data[2];
 	int		i[2];
@@ -51,9 +51,9 @@ int	setCF(char *str, t_fileContent *game, int n)
 		if (str[i[0]] == ',' || str[i[0] + 1] == '\0')
 		{
 			if (n == 0)
-				game->F[i[1]++] = ft_atoi(data[0]);
+				game->f[i[1]++] = ft_atoi(data[0]);
 			else
-				game->C[i[1]++] = ft_atoi(data[0]);
+				game->c[i[1]++] = ft_atoi(data[0]);
 			data[0][0] = '\0';
 		}
 	}
@@ -61,7 +61,7 @@ int	setCF(char *str, t_fileContent *game, int n)
 	return (1);
 }
 
-int	parse_CF(char *line, t_fileContent *game)
+int	parse_CF(char *line, t_filecontent *game)
 {
 	char	*ax;
 	int		r;
@@ -80,12 +80,12 @@ int	parse_CF(char *line, t_fileContent *game)
 		if (line[0] == 'F')
 		{
 			r = setCF(ax, game, 0);
-			r = isRGB(game->F);
+			r = isRGB(game->f);
 		}
 		else
 		{
 			setCF(ax, game, 1);
-			r = isRGB(game->C);
+			r = isRGB(game->c);
 		}
 		free(ax);
 	}

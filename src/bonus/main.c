@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 20:07:56 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:38:15 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,28 @@ int	game_loop(t_game *game)
 	return (0);
 }
 
-void	transpile(t_fileContent *map_file, t_game *game)
+void	transpile(t_filecontent *map_file, t_game *game)
 {
 	game->north_texture = new_texture(game, map_file->texture[0], 32, 32);
 	game->south_texture = new_texture(game, map_file->texture[1], 32, 32);
 	game->west_texture = new_texture(game, map_file->texture[2], 32, 32);
 	game->east_texture = new_texture(game, map_file->texture[3], 32, 32);
-	game->map_height = map_file->Y;
-	game->map_width = map_file->X;
+	game->map_height = map_file->y;
+	game->map_width = map_file->x;
 	game->player.x = map_file->player_x;
 	game->player.y = map_file->player_y;
 	game->player.angle = map_file->player_o;
 	game->map = map_file->map.items;
 	game->map[(int)(game->player.y)][(int)(game->player.x)] = '0';
-	game->floor_color = rgb_to_hex(map_file->F[0],
-			map_file->F[1], map_file->F[2]);
-	game->ceil_color = rgb_to_hex(map_file->C[0],
-			map_file->C[1], map_file->C[2]);
+	game->floor_color = rgb_to_hex(map_file->f[0],
+			map_file->f[1], map_file->f[2]);
+	game->ceil_color = rgb_to_hex(map_file->c[0],
+			map_file->c[1], map_file->c[2]);
 }
 
 int	main(int argc, char **argv)
 {
-	t_fileContent	map_file;
+	t_filecontent	map_file;
 	t_game			game;
 
 	if (argc != 2)

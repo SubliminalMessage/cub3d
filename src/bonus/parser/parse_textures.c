@@ -1,6 +1,6 @@
 #include <cub3d.h>
 
-int	parse_textures(char *line, t_fileContent *game)
+int	parse_textures(char *line, t_filecontent *game)
 {
 	char	*c[4];
 	int		i;

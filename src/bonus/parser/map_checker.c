@@ -2,7 +2,7 @@
 
 //UTILS
 
-int	sstrlen(t_arrayList list, int i)
+int	sstrlen(t_arraylist list, int i)
 {
 	if (list.size - 1 == i)
 		return (ft_strlen(list.items[i]));
@@ -12,7 +12,7 @@ int	sstrlen(t_arrayList list, int i)
 
 //THIS FILE
 static int	map_open_errors(int err, int i, int j, int position,
-		t_arrayList *list)
+		t_arraylist *list)
 {
 	if (err != 0)
 	{
@@ -35,7 +35,7 @@ static int	map_open_errors(int err, int i, int j, int position,
 	return (err);
 }
 
-static int	check_simbol(int i, int j, t_arrayList list, int position)
+static int	check_simbol(int i, int j, t_arraylist list, int position)
 {
 	if (!ft_strchr("1 0NSEW", list.items[i][j]))
 		return (1);
@@ -44,7 +44,7 @@ static int	check_simbol(int i, int j, t_arrayList list, int position)
 	return (0);
 }
 
-static int	check_open(int i, int j, int r_size, t_arrayList list)
+static int	check_open(int i, int j, int r_size, t_arraylist list)
 {
 	if (j == 0 || i == 0 || j == r_size - 1 || i == list.size - 1)
 		return (2);
@@ -58,7 +58,7 @@ static int	check_open(int i, int j, int r_size, t_arrayList list)
 	return (0);
 }
 
-int	map_checker(t_arrayList list)
+int	map_checker(t_arraylist list)
 {
 	int	vars[4];
 	int	position;
@@ -88,7 +88,7 @@ int	map_checker(t_arrayList list)
 }
 
 //RECURSIVI WONDER
-int	map_checker_recursive(t_arrayList list, int row, int col, int position,
+int	map_checker_recursive(t_arraylist list, int row, int col, int position,
 		int err)
 {
 	int	nextRow;
@@ -111,7 +111,7 @@ int	map_checker_recursive(t_arrayList list, int row, int col, int position,
 	}
 	return (map_checker_recursive(list, nextRow, nextCol, position, err));
 }
-int	map_checker_r(t_arrayList list)
+int	map_checker_r(t_arraylist list)
 {
 	return (map_checker_recursive(list, 0, 0, 0, 0));
 }

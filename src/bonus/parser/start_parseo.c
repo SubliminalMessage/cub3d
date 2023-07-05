@@ -1,9 +1,9 @@
 #include <cub3d.h>
 
 //TODO
-static void	rmvNewLine(t_fileContent *game)
+static void	rmvNewLine(t_filecontent *game)
 {
-	t_arrayList	nwmp;
+	t_arraylist	nwmp;
 	int			i;
 
 	i = 0;
@@ -18,7 +18,7 @@ static void	rmvNewLine(t_fileContent *game)
 	game->map = nwmp;
 }
 
-static void	appendSpaces(t_arrayList *nwmp, char *str, int numSpaces)
+static void	appendSpaces(t_arraylist *nwmp, char *str, int numSpaces)
 {
 	size_t	newLen;
 	char	*newStr;
@@ -36,19 +36,19 @@ static void	appendSpaces(t_arrayList *nwmp, char *str, int numSpaces)
 	//return (newStr); // <??
 }
 
-void	fillWithSpaces(t_fileContent *game)
+void	fillWithSpaces(t_filecontent *game)
 {
 	int			i;
 	char		*str;
-	t_arrayList	nwmp;
+	t_arraylist	nwmp;
 
 	arr_init(&nwmp);
 	i = 0;
 	while (i < game->map.size)
 	{
 		str = ft_strdup(game->map.items[i]);
-		if ((game->Y - ft_strlen(str)) > 0)
-			appendSpaces(&nwmp, str, game->Y - ft_strlen(str));
+		if ((game->y - ft_strlen(str)) > 0)
+			appendSpaces(&nwmp, str, game->y - ft_strlen(str));
 		else
 		{
 			arr_add(&nwmp, str);
@@ -59,7 +59,7 @@ void	fillWithSpaces(t_fileContent *game)
 	arr_clear(&game->map);
 	game->map = nwmp;
 }
-static int	getXSize(t_fileContent *game_data)
+static int	getXSize(t_filecontent *game_data)
 {
 	int	i;
 	int	max;
@@ -71,18 +71,18 @@ static int	getXSize(t_fileContent *game_data)
 			max = ft_strlen(game_data->map.items[i]);
 	return (max);
 }
-static void	getMapSizeAndFill(t_fileContent *game)
+static void	getMapSizeAndFill(t_filecontent *game)
 {
 	int	aux;
 
-	game->X = game->map.size;
+	game->x = game->map.size;
 	rmvNewLine(game);
-	game->Y = getXSize(game);
+	game->y = getXSize(game);
 	fillWithSpaces(game);
 	// El edu es dislexico
-	aux = game->X;
-	game->X = game->Y;
-	game->Y = aux;
+	aux = game->x;
+	game->x = game->y;
+	game->y = aux;
 }
 
 static float	player_o(char c)
@@ -100,7 +100,7 @@ static float	player_o(char c)
 		return (0.0 + margin);
 	return (ONE_DEGREE * 90 + margin);
 }
-static void	set_player_position(t_fileContent *game_data)
+static void	set_player_position(t_filecontent *game_data)
 {
 	int	i;
 	int	j;
@@ -125,7 +125,7 @@ static void	set_player_position(t_fileContent *game_data)
 	}
 }
 
-int	start_parseo(t_fileContent *game_data, char *argv)
+int	start_parseo(t_filecontent *game_data, char *argv)
 {
 	struct_game_init_textures(game_data);
 	arr_init(&game_data->map);
@@ -162,6 +162,6 @@ int	start_parseo(t_fileContent *game_data, char *argv)
 	printf("\ty: %f\n", game_data->player_y);
 	printf("\to: %f\n", game_data->player_o);
 	printf("Map:\n");
-	printf("\tWidth: %d\n\tHeight: %d\n", game_data->X, game_data->X);
+	printf("\tWidth: %d\n\tHeight: %d\n", game_data->x, game_data->x);
 	return (1);
 }
