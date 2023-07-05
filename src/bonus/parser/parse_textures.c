@@ -12,6 +12,19 @@
 
 #include <cub3d.h>
 
+static int con_( t_filecontent *game, int i)
+{
+	if (!exten_checker(game->texture[i], "xpm")
+	|| !file_exist(game->texture[i]))
+		return (0);
+	return (1);
+}
+static int	err_(char *c, int i)
+{
+	printf("[X] Error parseando las Texturas de: %s\n", c[i]);
+	return (0);
+}
+
 int	parse_textures(char *line, t_filecontent *game)
 {
 	char	*c[4];
@@ -31,16 +44,10 @@ int	parse_textures(char *line, t_filecontent *game)
 			{
 				remove_new_line(line);
 				game->texture[i] = ft_strtrim(line + 2, " ");
-				if (!exten_checker(game->texture[i], "xpm")
-					|| !file_exist(game->texture[i]))
-					return (0);
-				return (1);
+				return(con_(game,i));
 			}
 			else
-			{
-				printf("[X] Error parseando las Texturas de: %s\n", c[i]);
-				return (0);
-			}
+				return(err_(c,i));
 		}
 	}
 	return (1);
