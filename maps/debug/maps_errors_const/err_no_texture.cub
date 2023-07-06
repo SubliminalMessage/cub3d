@@ -1,7 +1,7 @@
-NO ./assets/arrow_n.xpm
-SO ./assets/arrow_s.xpm
-EA ./assets/arrow_e.xpm
-WE ./assets/arrow_w.xpm
+NO 
+SO ./assets/debug/arrow_s.xpm
+EA ./assets/debug/arrow_e.xpm
+WE ./assets/debug/arrow_w.xpm
 
 F 187,159,6
 C 61,61,61
