@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:58:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:14:45 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:19:34 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	calculate_collision(t_ray *ray, t_game *game)
 			iteration = 100;
 			continue ;
 		}
-		if (game->map[(int)ray->y][(int)ray->x] == '0')
+		if (game->map[(int)ray->y][(int)ray->x] != '1')
 		{
 			ray->x += ray->x_offset;
 			ray->y += ray->y_offset;
