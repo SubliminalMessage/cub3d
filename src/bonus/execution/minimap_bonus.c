@@ -6,11 +6,11 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:00:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 13:03:44 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:14:10 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	draw_minimap_player(t_game *game)
 {
