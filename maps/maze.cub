@@ -1,9 +1,9 @@
-NO ./assets/debug/arrow_n.xpm
-SO ./assets/debug/arrow_s.xpm
-EA ./assets/debug/arrow_e.xpm
-WE ./assets/debug/arrow_w.xpm
+NO ./assets/deepslate_tiles.xpm
+SO ./assets/deepslate_tiles.xpm
+EA ./assets/deepslate_tiles.xpm
+WE ./assets/deepslate_tiles.xpm
 
-F 187,159,6
+F 42,42,42
 C 61,61,61
 
 1111111111111111111111111111
