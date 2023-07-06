@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:26:29 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/04 19:07:22 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:34:02 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 int	close_window(t_game *game)
 {
 	(void) game;
-	system("leaks -q cub3d || leaks -q cub3D");
 	exit(0);
 	return (0);
 }

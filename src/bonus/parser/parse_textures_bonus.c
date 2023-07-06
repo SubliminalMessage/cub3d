@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:31 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 13:14:26 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:23:56 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	con_(t_filecontent *game, int i)
 
 static int	err_(char **c, int i)
 {
-	printf("[X] Error parseando las Texturas de: %s\n", c[i]);
+	printf("Error\nTried to parse textures\nLine: '%s'\n", c[i]);
 	return (0);
 }
 

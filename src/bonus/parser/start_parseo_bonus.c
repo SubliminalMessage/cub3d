@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 13:14:35 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:40:08 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,13 @@ int	start_parseo(t_filecontent *game_data, char *argv)
 	arr_init(&game_data->map);
 	if (!exten_checker(argv, "cub"))
 	{
-		printf("[x] ERROR EXTENSION ERRONEA\n");
+		printf("Error\nInvalid map extension\n");
 		game_data_clear(game_data);
 		arr_clear(&game_data->map);
 		return (0);
 	}
 	if (!read_file(argv, &game_data->map, game_data))
 	{
-		printf("[x] ERROR CONTENIDO DEL ARCHIVO .cub\n");
 		game_data_clear(game_data);
 		arr_clear(&game_data->map);
 		return (0);

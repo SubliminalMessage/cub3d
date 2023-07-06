@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:50 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 21:31:22 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:29:21 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,14 @@ static int	map_open_errors(int err, int i, int position, t_arraylist *list)
 	if (err != 0)
 	{
 		if (err == 1)
-			printf("[x] ERROR SIMBOLO DUPLICADO/DESCONOCIDO\n");
+			printf("Error\nInvalid map (weird character).\n");
 		else if (err == 2)
-			printf("[x] ERROR MAPA\n");
-		printf("LINEA : %s \n", list->items[i]);
-		i = 0;
-		while (i < list->size)
-			printf("%s\n", list->items[i++]);
-		printf("\n");
+			printf("Error\nInvalid map.");
+		printf("\nLine: '%s'\n", list->items[i]);
 	}
 	if (position != 1 || list->size - 1 > i)
 	{
-		printf("[x] ERROR MAP INVALID\n");
+		printf("Error\nInvalid map\n");
 		err = 1;
 	}
 	return (err);

@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:20 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 21:15:16 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:40:02 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,21 @@ int	vars_parse(char *line, t_filecontent *game)
 {
 	if (!ft_strchr("NSWEFC", line[0]) && line[0] != '\n')
 	{
-		printf("[x] ERROR CONTENIDO DEL ARCHIVO .cub\n LINE: %s\n", line);
+		printf("Error\nFile content is not correct.\nLine: '%s'\n", line);
 		return (2);
 	}
 	if (!parse_textures(line, game))
 	{
-		printf("[x] ERROR TEXTURAS\n LINE: %s\n", line);
+		printf("Error\nTexture is not correct.\nLine: '%s'\n", line);
 		return (2);
 	}
 	if (!parse_cf(line, game))
 	{
-		printf("[x] ERROR COLORES DEL TECHO/SUELO\n LINE: %s\n", line);
+		printf("Error\nRGB value is not corrext.\nLine: '%s'\n", line);
 		return (2);
 	}
 	if (is_texture(game->texture) && is_rgb(game->f) && is_rgb(game->c))
-	{
-		printf("VARIABLES OK\n***START CHECK MAP***\n");
 		return (1);
-	}
 	return (0);
 }
 
@@ -79,12 +76,16 @@ int	read_file(char *argv, t_arraylist *lst, t_filecontent *game_data)
 	}
 	else
 	{
+		printf("Error\nCannot open the file\n");
 		close(fd);
 		return (0);
 	}
 	close(fd);
 	if (lst->size == 0)
+	{
+		printf("Error\nMap not found in file\n");
 		return (0);
+	}
 	return (r);
 }
 
