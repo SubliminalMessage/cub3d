@@ -23,25 +23,47 @@ LIBFT_PATH			= libft/
 NAME		= cub3D
 LIBFT		= $(LIBFT_PATH)/libft.a
 
-SRC_BONUS	=	src/bonus/main.c \
-				src/bonus/execution/setup.c \
-				src/bonus/execution/hooks.c \
-				src/bonus/execution/rays.c \
-				src/bonus/execution/player_movement.c \
-				src/bonus/execution/minimap.c \
-				src/bonus/utils/math_utils.c \
-				src/bonus/utils/mlx_utils.c \
-				src/bonus/utils/rays_utils.c \
-				src/bonus/utils/arraylist.c \
-				src/bonus/utils/color_utils.c \
-				src/bonus/parser/start_parseo.c \
-				src/bonus/parser/parseo.c \
-				src/bonus/parser/parse_utils.c \
-				src/bonus/parser/map_checker.c \
-				src/bonus/parser/parse_textures.c \
-				src/bonus/parser/parse_rgb.c
+SRC_MAND	=	src/mandatory/main.c \
+				src/mandatory/execution/setup.c \
+				src/mandatory/execution/hooks.c \
+				src/mandatory/execution/rays.c \
+				src/mandatory/execution/player_movement.c \
+				src/mandatory/utils/math_utils.c \
+				src/mandatory/utils/mlx_utils.c \
+				src/mandatory/utils/rays_utils.c \
+				src/mandatory/utils/arraylist.c \
+				src/mandatory/utils/color_utils.c \
+				src/mandatory/utils/string_utils.c \
+				src/mandatory/utils/map_getters.c \
+				src/mandatory/parser/start_parseo.c \
+				src/mandatory/parser/parseo.c \
+				src/mandatory/parser/parse_utils.c \
+				src/mandatory/parser/map_checker.c \
+				src/mandatory/parser/parse_textures.c \
+				src/mandatory/parser/parse_rgb.c
 
-SRC_OBJS 	= $(SRC_BONUS:src/%.c=bin/%.o)
+SRC_BONUS	=	src/bonus/main_bonus.c \
+				src/bonus/execution/setup_bonus.c \
+				src/bonus/execution/hooks_bonus.c \
+				src/bonus/execution/rays_bonus.c \
+				src/bonus/execution/player_movement_bonus.c \
+				src/bonus/execution/minimap_bonus.c \
+				src/bonus/utils/math_utils_bonus.c \
+				src/bonus/utils/mlx_utils_bonus.c \
+				src/bonus/utils/rays_utils_bonus.c \
+				src/bonus/utils/arraylist_bonus.c \
+				src/bonus/utils/color_utils_bonus.c \
+				src/bonus/utils/string_utils_bonus.c \
+				src/bonus/utils/map_getters_bonus.c \
+				src/bonus/parser/start_parseo_bonus.c \
+				src/bonus/parser/parseo_bonus.c \
+				src/bonus/parser/parse_utils_bonus.c \
+				src/bonus/parser/map_checker_bonus.c \
+				src/bonus/parser/parse_textures_bonus.c \
+				src/bonus/parser/parse_rgb_bonus.c
+
+SRC_OBJS_MAND 	= $(SRC_MAND:src/%.c=bin/%.o)
+SRC_OBJS_BONUS 	= $(SRC_BONUS:src/%.c=bin/%.o)
 
 ### ---   ---   ---         ---   ---   --- ###
 #              COLORS & EXTRAS :)             #
@@ -57,12 +79,18 @@ RESET	= '\033[0;0m'
 #                  GAME RULES                 #
 ### ---   ---   ---         ---   ---   --- ###
 
-.PHONY: all re clean fclean bonus
+.PHONY: all re clean fclean bonus .bonus
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(LIBFT) $(SRC_OBJS)
-	@$(CC) $(CFLAGS) $(SRC_OBJS) $(LIBFT) $(MLX_FLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -I mlx/ -o $(NAME)
+$(NAME): $(MLX) $(LIBFT) $(SRC_OBJS_MAND)
+	@$(CC) $(CFLAGS) $(SRC_OBJS_MAND) $(LIBFT) $(MLX_FLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -I mlx/ -o $(NAME)
+
+bonus: .bonus
+
+.bonus: $(MLX) $(LIBFT) $(SRC_OBJS_BONUS)
+	@touch .bonus
+	@$(CC) $(CFLAGS) $(SRC_OBJS_BONUS) $(LIBFT) $(MLX_FLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -I mlx/ -o $(NAME)
 
 $(MLX):
 	@echo $(PURPLE)"[Make MLX]"$(RESET)

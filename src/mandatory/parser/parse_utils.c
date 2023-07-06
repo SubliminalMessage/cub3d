@@ -6,11 +6,11 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:46:26 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 13:14:31 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/05 23:56:07 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d_bonus.h>
+#include <cub3d.h>
 
 int	is_rgb(int *n)
 {

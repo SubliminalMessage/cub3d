@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:51 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 00:01:27 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:13:53 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <fcntl.h>
 # include <libft.h>
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
-# include <structures.h>
+# include <structures_bonus.h>
 
 # define W_WIDTH 1200      // Map Size
 # define W_HEIGHT 675//(W_WIDTH / 16) * 9 // 16:9 Aspect Ratio
