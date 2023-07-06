@@ -6,7 +6,7 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 01:07:06 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/06 00:02:15 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:56:00 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,11 @@ void	draw_ray(t_game *game, float angle, int count)
 
 	angle = correct_angle(angle);
 	collision_ray = min_ray(ray(game, angle, 'H'), ray(game, angle, 'V'));
-	//// Draw the Minimap ////
 	player = point(2 * MP_CELL_SZ + game->player.x * MP_CELL_SZ,
 			2 * MP_CELL_SZ + game->player.y * MP_CELL_SZ);
 	collision = point(2 * MP_CELL_SZ + collision_ray.x * MP_CELL_SZ,
 			2 * MP_CELL_SZ + collision_ray.y * MP_CELL_SZ);
 	draw_line(&game->canvas, player, collision, 0xFFAFC5);
-	//////////////////////////
 	save_ray_info(&ray_info, game, collision_ray);
 	collision_ray.real_height = (32 * 30) / ray_info.correct_distance;
 	collision_ray.projected_height = collision_ray.real_height;

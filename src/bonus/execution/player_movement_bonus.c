@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movement.c                                  :+:      :+:    :+:   */
+/*   player_movement_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:44:15 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:35:48 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:10:06 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ static void	move_player(t_game *game, float dx, float dy)
 	multiplier = 1;
 	final_x = game->player.x + dx * multiplier;
 	final_y = game->player.y + dy * multiplier;
-	/*
-	// Collisions for mandatory part
-	// (can get through walls, but can't get outside map)
-	if (final_x >= 0 && final_x < game->map_width)
-		game->player.x += dx;
-	if (final_y >= 0 && final_y < game->map_height)
-		game->player.y += dy;
-	*/
-	// Collisions for Bonus Part (can't get through any wall)
 	if (game->map[(int)floor(game->player.y)][(int)final_x] == '0')
 		game->player.x += dx;
 	if (game->map[(int)final_y][(int)floor(game->player.x)] == '0')

@@ -6,11 +6,33 @@
 /*   By: dangonza <dangonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:10:13 by dangonza          #+#    #+#             */
-/*   Updated: 2023/07/05 20:38:15 by dangonza         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:07:21 by dangonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	draw_background(t_game *game)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	color = game->ceil_color;
+	y = 0;
+	while (y < W_HEIGHT)
+	{
+		x = 0;
+		if (y > W_HEIGHT / 2)
+			color = game->floor_color;
+		while (x < W_WIDTH)
+		{
+			place_pixel_at(&game->canvas, point(x, y), color);
+			x++;
+		}
+		y++;
+	}
+}
 
 int	game_loop(t_game *game)
 {
@@ -20,7 +42,6 @@ int	game_loop(t_game *game)
 
 	draw_background(game);
 	update_player_position(game);
-	draw_minimap_background(game);
 	total_rays = FOV * FOV_DENSITY;
 	i = -(total_rays / 2);
 	count = 0;
@@ -30,8 +51,6 @@ int	game_loop(t_game *game)
 		i++;
 		count++;
 	}
-	draw_minimap_walls(game);
-	draw_minimap_player(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->canvas.img, 0, 0);
 	return (0);
 }
@@ -69,10 +88,10 @@ int	main(int argc, char **argv)
 		close_window(NULL);
 	game = init_game_structure();
 	transpile(&map_file, &game);
+	rotate_player(&game, 0.001);
 	mlx_hook(game.window, ON_KEYDOWN, 0, handle_input_down, &game);
 	mlx_hook(game.window, ON_KEYUP, 0, handle_input_up, &game);
 	mlx_hook(game.window, 17, 1L < 17, close_window, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
-	mlx_hook(game.window, ON_MOUSEMOVE, 0, handle_mouse_move, &game);
 	mlx_loop(game.mlx);
 }
