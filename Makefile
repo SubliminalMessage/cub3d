@@ -79,7 +79,7 @@ RESET	= '\033[0;0m'
 #                  GAME RULES                 #
 ### ---   ---   ---         ---   ---   --- ###
 
-.PHONY: all re clean fclean bonus .bonus
+.PHONY: all re clean fclean bonus
 
 all: $(NAME)
 
